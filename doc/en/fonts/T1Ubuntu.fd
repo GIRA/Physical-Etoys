@@ -1,0 +1,5 @@
+\ProvidesFile{T1Ubuntu.fd}
+\DeclareFontFamily{T1}{Ubuntu}{}
+\DeclareFontShape{T1}{Ubuntu}{m}{n}{ <-> Ubuntu-Regular--cork }{}
+\DeclareFontShape{T1}{Ubuntu}{m}{it}{ <-> Ubuntu-Italic--cork }{}
+\DeclareFontShape{T1}{Ubuntu}{bx}{n}{ <-> Ubuntu-Bold--cork }{}
