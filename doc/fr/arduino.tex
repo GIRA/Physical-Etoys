@@ -90,7 +90,7 @@
 \newcommand{\screenshot}[1]
 {
 \begin{center}
-	\includegraphics[scale=0.5]{screenshots/#1}
+	\includegraphics[scale=0.5]{images/#1}
 \end{center}
 }
 
@@ -119,7 +119,7 @@
 
 \newcommand{\inserticon}[1]
 {
-\includegraphics[scale=0.5]{icons/#1.png}
+\includegraphics[scale=0.5]{../shared/images/icons/#1.png}
 }
 % Use this macro to easily insert halo icons in the doc.
 % \icon{icon_name} insert inline the icon ;
@@ -146,7 +146,7 @@
 %[RGB]{214,141,0}{251,240,220}
 \begin{wrapfigure}[3]{l}{1.8em}
 	\vspace{-15pt}
-	\includegraphics[width=2.0em]{tip.png}
+	\includegraphics[width=2.0em]{../shared/images/tip.png}
 \end{wrapfigure}
 #1
 \end{framed}
@@ -157,8 +157,6 @@
 \let\myMargin\marginpar
 \renewcommand{\marginpar}[1]{\myMargin{{\scriptsize \sffamily #1}}}
 
-
-\graphicspath{{images/}}
 
 %################# Header and footer with fancyhdr
 \headheight=14.85pt
@@ -181,7 +179,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{
-	\includegraphics[width=8cm]{physical_etoys_logo.jpg}\\
+	\includegraphics[width=8cm]{../shared/images/physical_etoys_logo.jpg}\\
 	\vfill
 	%\includegraphics[width=5cm]{minibot.png}
 	\vspace{3em}
@@ -607,7 +605,7 @@ Amusez-vous bien !
         Planète Sciences 2011 pour la version française.
         Cette documentation est diffusée sous les termes de la licence Creative Commons Paternité-Partage à l'identique.\\
         \vspace{2cm}
-        \includegraphics[scale=0.5]{logo_cc.png}
+        \includegraphics[scale=0.5]{../shared/images/logo_cc.png}
 \end{center}
 
 \vfill
