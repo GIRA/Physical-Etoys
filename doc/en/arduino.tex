@@ -52,34 +52,15 @@
 %%                           Glossary                                        %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeglossaries
-%Pour re-générer le glossaire : makeindex squeakbot_pas_a_pas.glo -s squeakbot_pas_a_pas.ist -t squeakbot_pas_a_pas.glg -o squeakbot_pas_a_pas.gls
 
 \newglossaryentry{halo}
 		{name={halo}, 
-		description={C'est l'ensemble des icônes qui entourent un objet quand on fait un \cd dessus}}
-\newglossaryentry{script}
-		{name={script}, 
-		description={Les scripts sont les programmes associés à chaque objet}}
-\newglossaryentry{visualisateur}
-		{name={visualisateur}, 
-		description={Le visualisateur est la zone, spécifique à chaque objet, qui contient toutes les briques permettant la programmation. On l'affiche grâce à \icon[ \oe il ]{oeil} du halo de l'objet}}
-\newglossaryentry{cap}
-		{name={cap}, 
-		description={Le cap d'un objet est son orientation absolue (en degrés) : un cap de 0 équivaut à une orientation vers le haut de l'écran. Pour modifier le cap, il faut faire tourner un peu l'objet avec \icon{pivoter}, puis cliquer sur la flèche verte \important{en maintenant la touche \textit{Majuscule} appuyée}}}
-\newglossaryentry{parametre}
-		{name={paramètre}, 
-		description={Un paramètre d'une fonction est une option que l'on passe à la fonction et que l'on peut modifier.}}
-\newglossaryentry{monde}
-		{name={Monde}, 
-		description={Le  monde  est l'ensemble du bureau de \appName. C'est un objet similaire aux autres~: on peut afficher son halo, son visualisateur, lui associer des scripts...}}
-\newglossaryentry{variable}
-		{name={Variable}, 
-		description={Une variable est une étiquette que l'on peut créer dans un objet, et qui va faire \textit{référence} à un autre objet, à un texte, à une valeur numérique... ça permet essentiellement de manipuler ou d'utiliser cet autre objet ou valeur dans un script.}}
+		description={}
+		}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \def\appName{Physical Etoys}
 
-%A remplacer par des images ?
 \def\rc{right clic~}
 \def\mc{middle clic~}
 \def\lc{left clic~}
@@ -88,7 +69,7 @@
 \newcommand{\screenshot}[1]
 {
 \begin{center}
-	\includegraphics[scale=0.5]{screenshots/#1}
+	\includegraphics[scale=0.5]{images/#1}
 \end{center}
 }
 
@@ -117,7 +98,7 @@
 
 \newcommand{\inserticon}[1]
 {
-\includegraphics[scale=0.5]{icons/#1.png}
+\includegraphics[scale=0.5]{../shared/images/icons/#1.png}
 }
 % Use this macro to easily insert halo icons in the doc.
 % \icon{icon_name} insert inline the icon ;
@@ -144,7 +125,7 @@
 %[RGB]{214,141,0}{251,240,220}
 \begin{wrapfigure}[3]{l}{1.8em}
 	\vspace{-15pt}
-	\includegraphics[width=2.0em]{tip.png}
+	\includegraphics[width=2.0em]{../shared/images/tip.png}
 \end{wrapfigure}
 #1
 \end{framed}
@@ -155,8 +136,6 @@
 \let\myMargin\marginpar
 \renewcommand{\marginpar}[1]{\myMargin{{\scriptsize \sffamily #1}}}
 
-
-\graphicspath{{images/}}
 
 %################# Header and footer with fancyhdr
 \headheight=14.85pt
@@ -179,7 +158,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{
-	\includegraphics[width=8cm]{physical_etoys_logo.jpg}\\
+	\includegraphics[width=8cm]{../shared/images/physical_etoys_logo.jpg}\\
 	\vfill
 	%\includegraphics[width=5cm]{minibot.png}
 	\vspace{3em}
@@ -554,7 +533,7 @@ Have fun!
 	GIRA 2011\\
 	This documentation is provided under the Creative Commons BY-SA license.\\
 	\vspace{2cm}
-	\includegraphics[scale=0.5]{logo_cc.png}
+	\includegraphics[scale=0.5]{../shared/images/logo_cc.png}
 \end{center}
 
 \vfill

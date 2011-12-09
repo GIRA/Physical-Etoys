@@ -4,7 +4,7 @@ all: arduino
 
 arduino: $(TARGET)
 
-	TEXFONTS=:./fonts TEXINPUTS=:./fonts pdflatex $(TARGET)
+	TEXFONTS=:../shared/fonts TEXINPUTS=:../shared/fonts pdflatex $(TARGET)
 
 clean:
 	rm -f *.aux *.log *.snm *.out *.toc *.nav *intermediate *~ *.glo *.ist
