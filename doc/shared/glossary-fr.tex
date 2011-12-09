@@ -1,0 +1,32 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                           Glossary                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Pour re-générer le glossaire : makeindex squeakbot_pas_a_pas.glo -s squeakbot_pas_a_pas.ist -t squeakbot_pas_a_pas.glg -o squeakbot_pas_a_pas.gls
+
+\newglossaryentry{halo}
+		{name={halo}, 
+		description={C'est l'ensemble des icônes qui entourent un objet quand on fait un \rc dessus}}
+\newglossaryentry{script}
+		{name={script}, 
+		description={Les scripts sont les programmes associés à chaque objet}
+		plural={scripts}}
+\newglossaryentry{viewer}
+		{name={visualisateur}, 
+		description={Le visualisateur est la zone, spécifique à chaque objet, qui contient toutes les briques permettant la programmation. On l'affiche grâce à \icon[ \oe il ]{eye} du halo de l'objet}}
+\newglossaryentry{heading}
+		{name={cap}, 
+		description={Le cap d'un objet est son orientation absolue (en degrés) : un cap de 0 équivaut à une orientation vers le haut de l'écran. Pour modifier le cap, il faut faire tourner un peu l'objet avec \icon{rotate}, puis cliquer sur la flèche verte \important{en maintenant la touche \textit{Majuscule} appuyée}}}
+\newglossaryentry{parameter}
+		{name={paramètre}, 
+		description={Un paramètre d'une fonction est une option que l'on passe à la fonction et que l'on peut modifier.}}
+\newglossaryentry{world}
+		{name={Monde}, 
+		description={Le  monde  est l'ensemble du bureau de \appName. C'est un objet similaire aux autres~: on peut afficher son halo, son visualisateur, lui associer des scripts...}}
+\newglossaryentry{photoresistor}
+		{name={photo-résistance}, 
+		description={Une photo-résistance est un petit capteur de lumière dont la résistance varie avec l'intensité lumineuse qu'il reçoit.}}
+\newglossaryentry{variable}
+		{name={Variable}, 
+		description={Une variable est une étiquette que l'on peut créer dans un objet, et qui va faire \textit{référence} à un autre objet, à un texte, à une valeur numérique... ça permet essentiellement de manipuler ou d'utiliser cet autre objet ou valeur dans un script.}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

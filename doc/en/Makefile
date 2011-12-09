@@ -9,9 +9,13 @@ INSTALL=install
 
 all: arduino
 
-arduino: $(TARGET)
+arduino: $(TARGET) $(TARGET:.tex=.gls) 
 
 	TEXFONTS=:../shared/fonts TEXINPUTS=:../shared/fonts pdflatex $(TARGET)
+
+%.gls: %.tex
+	TEXFONTS=:../shared/fonts TEXINPUTS=:../shared/fonts pdflatex $(<)
+	makeglossaries $(<:.tex=)
 
 install: $(TARGET:.tex=.pdf)
 	$(INSTALL) -T --mode=644 $< $(PREFIX)/$(TARGET:.tex=-$(LANGUAGE).pdf) 
