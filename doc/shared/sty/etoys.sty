@@ -1,0 +1,105 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{etoys}[2011/12/10 v0.1 EToys LaTeX package, created by Severin Lemaignan]
+
+\RequirePackage{ifthen}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{framed}
+\RequirePackage{wrapfig}
+
+\RequirePackage{url}
+\RequirePackage{hyperref}
+
+\RequirePackage{enumerate}
+\RequirePackage{pdfpages} %% To add a cover to the doc
+
+\RequirePackage{translator} % Provided by the Beamer Latex extension
+\usedictionary{etoys-base}
+
+%Replace it by images?
+\def\rc{\translate{right clic}}
+\def\mc{\translate{middle clic}}
+\def\lc{\translate{left clic}}
+
+% If a PDF file called 'cover.pdf' exists, use it as cover.
+\newcommand{\insertcover}
+{
+	\IfFileExists{cover.pdf}{
+	\includepdf[pages=-, fitpaper]{cover.pdf}
+	\thispagestyle{empty}
+	\cleardoublepage
+	}
+}
+
+\newcommand{\screenshot}[1]
+{
+\begin{center}
+	\includegraphics[scale=0.5]{images/#1}
+\end{center}
+}
+
+\newcommand{\tile}[1]{
+\sffamily
+\fcolorbox[RGB]{200,192,144}{200,248,200}{\textbf{#1}}
+\normalfont
+}
+
+\newcommand{\testtile}[1]
+{
+\sffamily
+\fcolorbox[RGB]{255,239,198}{247,222,189}{
+\ifthenelse {\equal{#1} {}} {\textbf{\translate{test tile}}} {\textbf{#1}}
+}
+\normalfont
+}
+
+% Useful for code or script names
+\newcommand{\code}[1]{\texttt{#1}}
+
+\newcommand{\important}[1]{\textbf{#1}}
+
+
+%%%%%%%%%%%%%%%%% KEYWORDS %%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[toc]{glossaries}
+\makeglossaries
+
+\newcommand{\keyword}[2]{\important{\gls{#1}}}
+\newcommand{\keywordpl}[2]{\important{\glspl{#1}}}
+\newcommand{\Keyword}[2]{\important{\Gls{#1}}}
+\newcommand{\Keywordpl}[2]{\important{\Glspl{#1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\inserticon}[1]
+{
+\includegraphics[scale=0.5]{../shared/images/icons/#1.png}
+}
+% Use this macro to easily insert halo icons in the doc.
+% \icon{icon_name} insert inline the icon ;
+% \icon[name]{icon_name} display "the [image] <name> icon"
+%
+% Available icons are:
+% clone, close, exclamation, eye, grab, greenarrow, menu, minimize, myselftile,
+% pausescript, redraw, rotate, scale, script, startscript, toolbox, variable
+\newcommand{\icon}[2][]
+{
+\ifthenelse {\equal{#1} {}} {\inserticon{#2}} {l'icône \inserticon{#2} \important{#1}}
+}
+
+% Used for section that must be done by the reader
+\newcommand{\todo}[1]
+{
+#1
+}
+
+\newcommand{\tip}[1]
+{
+\begin{framed}
+%\marginpar{#1}
+%[RGB]{214,141,0}{251,240,220}
+\begin{wrapfigure}[3]{l}{1.8em}
+	\vspace{-15pt}
+	\includegraphics[width=2.0em]{../shared/images/tip.png}
+\end{wrapfigure}
+#1
+\end{framed}
+}

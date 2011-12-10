@@ -7,21 +7,25 @@ PREFIX?=.
 
 INSTALL=install
 
+SHAREDPATH=../shared
+TEXFONTS=$(SHAREDPATH)/fonts
+TEXINPUTS=$(TEXFONTS):$(SHAREDPATH)/sty
+
 all: arduino
 
 arduino: $(TARGET) $(TARGET:.tex=.gls) 
 
-	TEXFONTS=:../shared/fonts TEXINPUTS=:../shared/fonts pdflatex $(TARGET)
+	TEXFONTS=:$(TEXFONTS) TEXINPUTS=:$(TEXINPUTS) pdflatex $(TARGET)
 
 %.gls: %.tex
-	TEXFONTS=:../shared/fonts TEXINPUTS=:../shared/fonts pdflatex $(<)
+	TEXFONTS=:$(TEXFONTS) TEXINPUTS=:$(TEXINPUTS) pdflatex $<
 	makeglossaries $(<:.tex=)
 
 install: $(TARGET:.tex=.pdf)
 	$(INSTALL) -T --mode=644 $< $(PREFIX)/$(TARGET:.tex=-$(LANGUAGE).pdf) 
 
 clean:
-	rm -f *.aux *.log *.snm *.out *.toc *.nav *intermediate *~ *.glo *.ist
+	rm -f *.aux *.log *.snm *.out *.toc *.nav *intermediate *~ *.glo *.glg *.gls *.ist
 
 distclean: clean
 	rm -f $(TARGET:.tex=.pdf)

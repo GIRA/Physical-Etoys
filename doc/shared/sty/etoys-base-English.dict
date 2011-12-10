@@ -1,0 +1,12 @@
+\ProvidesDictionary{etoys-base}{English}
+
+\providetranslation{right clic}{right clic~}
+\providetranslation{middle clic}{middle clic~}
+\providetranslation{left clic}{left clic~}
+\providetranslation{test tile}{Test: Yes/No} % The content of the Test tile
+
+% When inserting icons, you can have some text before and some text after
+% the icon, like: "the <icon image> icon" in English.
+% Thus the translation is splitted in 2 parts, before and after
+\providetranslation{before icon}{the}
+\providetranslation{after icon}{icon}
