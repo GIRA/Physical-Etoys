@@ -63,10 +63,10 @@
 \RequirePackage[toc]{glossaries}
 \makeglossaries
 
-\newcommand{\keyword}[2]{\important{\gls{#1}}}
-\newcommand{\keywordpl}[2]{\important{\glspl{#1}}}
-\newcommand{\Keyword}[2]{\important{\Gls{#1}}}
-\newcommand{\Keywordpl}[2]{\important{\Glspl{#1}}}
+\newcommand{\keyword}[1]{\important{\gls{#1}}}
+\newcommand{\keywordpl}[1]{\important{\glspl{#1}}}
+\newcommand{\Keyword}[1]{\important{\Gls{#1}}}
+\newcommand{\Keywordpl}[1]{\important{\Glspl{#1}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\inserticon}[1]
@@ -82,7 +82,7 @@
 % pausescript, redraw, rotate, scale, script, startscript, toolbox, variable
 \newcommand{\icon}[2][]
 {
-\ifthenelse {\equal{#1} {}} {\inserticon{#2}} {l'icône \inserticon{#2} \important{#1}}
+\ifthenelse {\equal{#1} {}} {\inserticon{#2}} {\translate{before icon} \inserticon{#2} \important{#1} \translate{after icon}}
 }
 
 % Used for section that must be done by the reader

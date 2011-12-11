@@ -5,8 +5,7 @@
 %% Planète Sciences 20011 for the Latex version) %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Authors: Ricardo Moran
-%% (translation to LaTex: Séverin Lemaignan)
+%% Authors: Ricardo Moran, Séverin Lemaignan
 
 \documentclass[english]{etoys-guide}
 
@@ -52,7 +51,7 @@ GIRA
 \cleardoublepage
 
 Due to the popularity and the different features that the Arduino board has, in
-this tutorial we will see how to access to some of them from Physical Etoys in
+this tutorial we will see how to access to some of them from \appName in
 order to make simple programs and have a suitable introduction to electronics.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -63,7 +62,7 @@ order to make simple programs and have a suitable introduction to electronics.
 \begin{itemize}
 	\item An Arduino board (we have worked with a Duemilanove).
 	\item An USB cable.
-	\item Physical Etoys software.
+	\item \appName software.
 \end{itemize}
 
 \subsection{Optional tools}
@@ -109,18 +108,18 @@ Serial Port" in the Ports section; that's the Arduino board.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Connecting Arduino to Physical Etoys}
+\section{Connecting Arduino to \appName}
 
-First and foremost, inside Physical Etoys, we have to get an “Arduino board”.
+First and foremost, inside \appName, we have to get an \important{Arduino board}.
 This is a graphical object that represents the Arduino board. 
 
-In order to obtain it we have to open the supplies’ flap.
+In order to obtain it we have to open the supplies' flap.
 
 \screenshot{01.png}
 
-The supplies’ flap contains the most used objects.  As long as we use the
+The supplies' flap contains the most used objects.  As long as we use the
 system we are going to learn more things about them. The one that interests us
-is the “Object catalog”.
+is the \important{Object catalog}.
 
 \screenshot{02.png}
 
@@ -133,15 +132,15 @@ use. It is ordered by categories but we can arrange the objects alphabetically.
 Apart from that we can look for a particular one.
 
 Now we have to choose the Electronics category. Then we have to drag the
-“Arduino board” etoy and place it on the world.
+\important{Arduino board} etoy and place it on the world.
 
 \screenshot{04.png}
   
-Now we have to open its viewer by making right-click on the “Arduino board” to
+Now we have to open its \keyword{viewer} by making right-click on the “Arduino board” to
 open the \keyword{halo}. The halo is a set of buttons which surround the object and let
 the user modify, move, delete and maximize it.  
 
-Next we click on the viewer icon (light blue) to make it appear. The viewer is
+Next we click on \icon[viewer]{eye} to make it appear. The viewer is
 a flap where we can not only see and modify the object’s properties on the
 screen but also create scripts for them to perform actions like moving on the
 screen. The properties and the actions are represented as tiles.
@@ -149,7 +148,7 @@ screen. The properties and the actions are represented as tiles.
 \screenshot{05.png}
 
 
-In a special category called “arduino-connection” we can find instructions
+In a special category called ``arduino-connection'' we can find instructions
 which are useful for connecting with the Arduino board. In order to change
 categories we have to double click the tiny triangle which is on the left hand
 side of the title of the categories and then we have to choose the desired
@@ -177,7 +176,7 @@ Therefore, the value of the tile which corresponds to the port will be COM 8
 
 Now the important instruction is “connect”. If we run this instruction (by
 clicking on \icon[exclamation]{exclamation}) we will connect the Arduino with
-Physical Etoys and then the tile which indicates if the Arduino board is
+\appName and then the tile which indicates if the Arduino board is
 connected will change its value to \code{true}. 
 
 \screenshot{10.png}
@@ -195,16 +194,17 @@ A bar will show the installation progress.
 \screenshot{12.png}
 
 If no error occurred, a caption will appear indicating that the process ended
-correctly. Now we have to connect the Arduino board again (by clicking on the
-exclamation sign of the connect tile). If the Arduino board is connected, the
-value of the isConnected tile will become true. 
+correctly. Now we have to connect the Arduino board again (by clicking on
+\icon[exclamation]{exclamation} of the \tile{connect} tile). If the Arduino
+board is connected, the value of the \tile{isConnected} tile will become
+\tile{true}. 
 
 \screenshot{13.png}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The “hello world” of electronics (blinking a led)}
+\section{The ``hello world'' of electronics (blinking a LED)}
 
-Before working with Physical Etoys we need to connect physically the led with
+Before working with \appName we need to connect physically the LED with
 the board. In this example, the cathode must be connected to ground and the
 anode to the thirteenth pin. 
 
@@ -212,44 +212,44 @@ anode to the thirteenth pin.
 
 \screenshot{15.png}
 
-Now we can start with Physical Etoys. 
+Now we can start with \appName. 
 
-Inside the “electronics category” from the object catalog, we drag a led. 
+Inside the \important{electronics} category from the object catalog, we drag a LED. 
 
 \screenshot{16.png}
 
 Once dropped, we have click on the positive pin and drag the appearing cable to
-one of the digital pins of the “Arduino board” (in this case the thirteen pin). 
+one of the digital pins of the Arduino board (in this case the thirteen pin). 
 
 \screenshot{17.png}
 
-Next we go to the led’s viewer and these tiles will appear:
+Next we go to the LED's viewer and these tiles will appear:
 
 \screenshot{18.png}
 
-Now we have to create a new script to make the led blinks. To create a new
+Now we have to create a new \keyword{script} to make the LED blinks. To create a new
 script we have to drag the \tile{empty script} tile which is inside the
-“scripts” category.  Once dragged we will see this:
+\important{scripts} category.  Once dragged we will see this:
 
 \screenshot{19.png}
 
 Then we have to click on \icon[toolbox]{toolbox} and choose a \testtile{} tile.
 This tile means that the script will do something according to a condition (in
-this case the led’s value). For the ones who have a bit of experience in
-programming this tile is an “if structure”. 
+this case the LED's value). For the ones who have a bit of experience in
+programming this tile is an \important{\code{if} structure}. 
 
 \screenshot{20.png}
 
-In order to establish the condition, we will drag (not from the arrow because
-we do not want to assign values to variables) the “led value tile” next to
-“test”:
+In order to establish the condition, we will drag (not from the
+\icon{greenarrow} arrow because we do not want to assign values to variables)
+the \tile{led value} tile next to \testtile{Test}:
 
 \screenshot{21.png}
 
-Now we have to define what the script will do if the led is turned on.
-Obviously, it has to turn it off. So we will assign to “led value” a false
-value. So we have to drag the led value from the arrow because we want to
-assign a value to the variable. 
+Now we have to define what the script will do if the LED is turned on.
+Obviously, it has to turn it off. So we will \important{assign} to \tile{led
+value} a \code{false} value. So we have to drag the LED value from the
+\icon{greenarrow} arrow because we want to assign a value to the variable. 
 
 
 \screenshot{22.png}
@@ -257,10 +257,10 @@ assign a value to the variable.
 \screenshot{22b.png}
 
 
-Now we will do the same but with a subtle difference: when the led is off,
-Physical Etoys will turn it on.  So we have to drag from the \icon{greenarrow}
+Now we will do the same but with a subtle difference: when the LED is off,
+\appName will turn it on.  So we have to drag from the \icon{greenarrow}
 arrow the \tile{led value} tile to the \testtile{No} section of the \testtile{}
-tile but we will change its value to true. 
+tile but we will change its value to \code{true}. 
 
 \screenshot{23.png}
 
@@ -268,18 +268,18 @@ Finally we will run the script by clicking on \icon[clock]{startscript}.
 
 \screenshot{24.png}
 
-If everything was fine, the led will blink.
+If everything was fine, the LED will blink.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Turning on a led by pressing a button}
+\section{Turning on a LED by pressing a button}
 
-Inside the Electronics category we have to drag a “push button” and then we
-have to connect it to the second pin of the “Arduino board”.
+Inside the \important{electronics} category we have to drag a \important{push
+button} and then we have to connect it to the second pin of the Arduino board.
 
 \screenshot{25.png}
 
-Take into account not to disconnect the led from the thirteen pin. Apart from
-that, stop the led’s script because it will interfere with the objective of
+Do not disconnect the LED from the thirteen pin. Apart from
+that, stop the LED's script because it will interfere with the objective of
 this exercise.
 
 The physical connection of the button (with the resistor and the protoboard)
@@ -289,30 +289,31 @@ should be like this:
 
 \screenshot{27.png}
 
-Now we have to enter to the Pushbutton’s viewer and create a new script. 
+Now we have to enter to the pushbutton’s viewer and create a new script. 
 
 \screenshot{28.png}
 
 Then we add a \testtile{} tile to know when the button is pressed. We have to
-drag the tile from its name because it is not an assignment. We want to consult
-its value. 
+drag the tile from its name because it is not an assignment: We simply want to
+read its value. 
 
 \screenshot{29.png}
 
-In case the button is pressed we will assign to the led a \code{true} value,
-otherwise we will assign a false value. Remember to drag the tiles from the
+In case the button is pressed we will assign to the LED a \code{true} value,
+otherwise we will assign a \code{false} value. Remember to drag the tiles from the
 \icon{greenarrow} arrows. Finally we have to click on \icon[clock]{startscript}
 to run the script. 
 
 \screenshot{30.png}
 
-If everything was fine, when we press the button, the led will blink. 
+If everything was fine, when we press the button, the LED will blink. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reading a Photoresistor}
 
-As we have the “Arduino Board” connected, we will attach a Photoresistor (which
-is inside the electronics category) to the second analog input pin.
+As we have the Arduino Board connected, we will attach a
+\keyword{photoresistor} (which is also inside the \important{electronics}
+category) to the second analog input pin.
 
 \screenshot{31.png}
 
@@ -323,12 +324,12 @@ The real connection should be more or less like this:
 \screenshot{33.png}
 
 Next we open the photoresistor’s viewer and create a new script. Now we have to
-go to the object catalog and drag from the basic category a rectangle. Then we
-open the rectangle’s viewer in order to drag (from the arrow) the brightness
-tile inside the photoresistor’s script. Now we have to open the photoresistor’s
-viewer to replace the rectangle’s brightness value (\tile{100}) with the
-\tile{Photoresistor’s light value} tile (not from the arrow because we only
-want to read the value). 
+go to the object catalog and drag from the \important{basic} category a
+rectangle. Then we open the rectangle’s viewer in order to drag (from the
+\icon{greenarrow} arrow) the \tile{brightness} tile inside the photoresistor’s
+script. Now we have to open the photoresistor’s viewer to replace the
+rectangle’s brightness value (\tile{100}) with the \tile{photoresistor’s light
+value} tile (not from the arrow because we only want to read the value). 
 
 \screenshot{34.png}
 
@@ -338,12 +339,12 @@ according to the ambient light.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Rotate a Servo with a rectangle}
 
-As we have the “Arduino Board” connected, we will attach a Servo (which is
-inside the electronics category) to the seventh pin. 
+As we have the Arduino Board connected, we will attach a Servo (which is
+also inside the \important{electronics} category) to the seventh pin. 
 
 \screenshot{35.png}
 
-The physical connection should be like this: 
+The physical connection should look like this: 
 
 \screenshot{36.png}
 
@@ -353,8 +354,8 @@ open its halo and then we drag \icon[scale]{scale} to change its size.
 \screenshot{37.png}
 
 Now we have to open the servo’s viewer and create a new script with the tile
-that contains the servo’s degrees. Remember that it is an assignment;
-therefore, we will drag the tile from the \icon{greenarrow} arrow. 
+that contains the \tile{servo’s degrees}. Remember that it is an assignment: we
+will drag the tile from the \icon{greenarrow} arrow. 
 
 \screenshot{38.png}
 
@@ -369,17 +370,16 @@ have to drag \icon[rotate]{rotate} to rotate the rectangle.
 \screenshot{40.png}
 
 If everything was fine the motor will move according to the rectangle’s
-heading. 
+\keyword{heading}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
 Well, that is basically all that we need to begin using the Arduino board. The
-possibilities of interaction between the computer, Arduino and the other
-electronic components that Physical Etoys provides are very numerous to deal
-with everyone in this small tutorial. We encourage you to discover the other
-ones by exploring the environment (testing, playing, touching and breaking if
-it is necessary) 
+possibilities of interaction between the computer, the Arduino and the other
+electronic components that \appName provides are numerous: We encourage you to
+discover the other ones by exploring the environment (testing, playing,
+touching and breaking if it is necessary) 
 
 Have fun!
 
