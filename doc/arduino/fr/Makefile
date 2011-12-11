@@ -7,7 +7,7 @@ PREFIX?=.
 
 INSTALL=install
 
-SHAREDPATH=../shared
+SHAREDPATH=../../shared
 TEXFONTS=$(SHAREDPATH)/fonts
 TEXINPUTS=$(TEXFONTS):$(SHAREDPATH)/sty
 
