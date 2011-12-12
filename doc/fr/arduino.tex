@@ -223,8 +223,8 @@ introduction à l'électronique.
 \subsection{Ce qu'il vous faut}
 
 \begin{itemize}
-        \item Une carte Arduino (nous avons testé avec la Duemilanove).
-        \item Un cable USB.
+        \item une carte Arduino (nous avons testé avec la Duemilanove),
+        \item un cable USB,
         \item le logiciel \appName.
 \end{itemize}
 
@@ -316,21 +316,20 @@ Le catalogue est une sorte de boîte contenant tous les objets que l'on peut
 utiliser. Ils sont classés par catégories mais vous pouvez les aussi les trier
 de manière alphabétique.
 
-
 Maintenant choisissez la catégorie \og Électronique\fg. Puis glissez/déposez le
 symbole de la carte Arduino sur le bureau.
 
 \screenshot{04.png}
   
 Maintenant, nous pouvons afficher le visualisateur de la carte en faisant un
-\rc sur son image.  Ceci affiche une série d'icônes autour de la carte qu'on
+\rc sur son image. Ceci affiche une série d'icônes autour de la carte qu'on
 appelle le \keyword{halo}. Les différentes icônes permettent de modifier,
 supprimer, agrandir ou rétrécir l'objet.
 
 En cliquant sur \icon[\oe il]{eye}, le visualisateur apparait. Le visualisateur
 est un panneau qui permet non seulement de voir et modifier les propriétés des
 objets, mais aussi de créer des \important{scripts}. Les scripts sont les
-petits programmes qui vont animer nos objets (les faire bouger, tourner ou...
+petits programmes qui vont animer nos objets (les faire bouger, tourner ou ...
 contrôler la carte Arduino).  Les propriétés et les actions sont représentés
 par des \important{briques}.
 
@@ -345,9 +344,9 @@ titre de la catégorie puis choisir la catégorie désirée
 
 Nous devons d'abord spécifier quelle carte nous allons utiliser. Dans notre
 exemple nous choisirons la carte Duemilanove avec le microcontroleur ATmega328.
-Puis il faut définir le port COM par lequel la carte est connectée.Pour le
+Puis il faut définir le port COM par lequel la carte est connectée. Pour le
 savoir il suffit de cliquer droit sur "Poste de travail" ou "Ordinateur" (si
-vous êtes sur PC Windows) puis "propriétés".Puis dans le disque dur, cliquez
+vous êtes sur PC Windows) puis "propriétés". Puis dans le disque dur, cliquez
 sur"gestionnaire de système" ?
 
 \screenshot{07.png}
@@ -364,7 +363,7 @@ Donc la valeur correspondant au port sous squeakbot sera COM 8
 
 Maintenant il est important de cliquer sur "connecter". Si nous chargeons cette
 commande (en cliquant sur   ), nous connecterons Arduino avec     et la case
-indiquant que la carte Arduino est connectée changera sa valeur en "vrai"
+indiquant que la carte Arduino est connectée changera sa valeur en "vrai".
 
 \screenshot{10.png}
 
@@ -375,7 +374,7 @@ recevoir des commandes. Il faut donc cliquer sur "oui".
 
 \screenshot{11.png}
 
-Une barre de progression vous indiquera où vous en êtes dans l'installation
+Une barre de progression vous indiquera où vous en êtes dans l'installation.
  
 \screenshot{12.png}
 
@@ -390,15 +389,14 @@ carte Arduino est connectée, la brique \tile{est connectée} passe à
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Les premiers pas : faire clignoter une LED}
 
-Avant de pouvoir manipuler dans \appName, il est nécessaire de connecter
-physiquement la LED sur la carte.  Dans cet exemple, la cathode doit être
+Avant de pouvoir utiliser \appName, il est nécessaire de connecter
+physiquement la LED à la carte.  Dans cet exemple, la cathode doit être
 reliée à la masse (\code{GND}) et l'anode à la treizième broche (D13).
 
 %TODO/remarque(CQ): est-ce qu'on ferait pas une petite phrase pour dire que:
 %- ya déjà une LED sur la carte pour la pin13 (elle est petite, certes, mais déjà présente)
 %- pas besoin de mettre une résistance parce que yen a déjà une sur D13, mais dans le cas général, il en faut une
 %- comment on identifie anode & cathode ?
-
 
 \screenshot{14.jpg}
 
@@ -449,7 +447,7 @@ valeur).
 \screenshot{21.png}
 
 Maintenant, nous devons décider de ce que le script va faire lorsque la LED est
-allumée. Très logiquement, nous voulons... l 'éteindre. Donc cette fois-ci, il
+allumée. Très logiquement, nous voulons ... l 'éteindre. Donc cette fois-ci, il
 faut \important{assigner} la valeur \code{Faux} à la LED. Il faut donc prendre
 la brique \tile{led value} par la \icon{greenarrow} flêche verte.
 
@@ -588,10 +586,10 @@ rectangle.
 
 Voilà, c'est tout ce dont vous avez besoin pour commencer à utiliser la carte
 Arduino. Les possibilités d'interaction entre l'ordinateur, Arduino et les
-autres composants électroniques que fournit \appName très nombreuses : nous
+autres composants électroniques que fournit \appName sont très nombreuses : nous
 vous encourageons à découvrir les autres fonctions et composants en explorant
 le reste de l'environnement Squeak (et pour celà, rien de tel que tester,
-jouer, toucher et même en casser si besoin !)
+jouer, toucher et même en casser si besoin !).
 
 Amusez-vous bien !
 
@@ -606,7 +604,7 @@ Amusez-vous bien !
 \vfill
 \begin{center}
         GIRA 2011\\
-        Planète Sciences 2011 pour la version française
+        Planète Sciences 2011 pour la version française.
         Cette documentation est diffusée sous les termes de la licence Creative Commons Paternité-Partage à l'identique.\\
         \vspace{2cm}
         \includegraphics[scale=0.5]{logo_cc.png}
