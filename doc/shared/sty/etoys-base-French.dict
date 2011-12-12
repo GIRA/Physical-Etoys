@@ -1,0 +1,12 @@
+\ProvidesDictionary{etoys-base}{French}
+
+\providetranslation{right clic}{clic droit~}
+\providetranslation{middle clic}{clic du milieu~}
+\providetranslation{left clic}{clic gauche~}
+\providetranslation{test tile}{Si: Oui/Non} % The content of the Test tile
+
+% When inserting icons, you can have some text before and some text after
+% the icon, like: "the <icon image> icon" in English.
+% Thus the translation is splitted in 2 parts, before and after
+\providetranslation{before icon}{l'îcone}
+\providetranslation{after icon}{}

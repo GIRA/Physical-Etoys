@@ -1,0 +1,453 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%         Arduino and Physical Etoys            %%
+%%              Version française                %%
+%%                                               %%
+%%                GIRA 2011                      %%
+%% Planète Sciences 20011 for the Latex version) %%
+%% Planète Sciences 20011 for the French version)%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Authors: Ricardo Moran
+%% (translation to LaTex: Séverin Lemaignan)
+
+\documentclass[french]{etoys-guide}
+
+\usepackage{babel}
+\usepackage{etoys}
+
+\input{../../shared/glossary-fr}
+
+\def\appName{Physical~Etoys~}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{
+	\includegraphics[width=8cm]{../../shared/images/physical_etoys_logo.jpg}\\
+	\vfill
+	\vspace{3em}
+	\LARGE{\textbf{\appName et la carte Arduino}}\\[1cm]
+	\large{Les premiers pas pour programmer la carte Arduino avec \appName}\\[1cm]
+	\vfill
+}
+
+\author{
+GIRA \\
+Version française : Planète Sciences
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% If it exists, add cover.pdf as front page.
+\insertcover
+\maketitle
+\cleardoublepage
+\tableofcontents
+\cleardoublepage
+
+En raison de la popularité et des différentes fonctionnalités de la carte
+Arduino, nous allons voir dans ce tutoriel comment accéder à certaines d'entre
+elles depuis \appName : au programme, des petits scripts simples et une
+introduction à l'électronique.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Installation}
+
+\subsection{Ce qu'il vous faut}
+
+\begin{itemize}
+        \item une carte Arduino (nous avons testé avec la Duemilanove),
+        \item un cable USB,
+        \item le logiciel \appName.
+\end{itemize}
+
+
+\subsection{En option...}
+
+Une LED, un petit bouton poussoir, une carte de prototypage pour faire des
+essais de branchements, 3 résistances 10 KOhms et un servo-moteur. Ce matériel
+nous permettra de vérifier que la carte fonctionne. 
+
+\subsection{Installation des pilotes}
+
+Lorsque vous connectez la carte Arduino, Windows la détecte et lance la
+procédure d'installation de pilote (si c'est la première fois que vous utilisez
+une Arduino avec votre ordinateur).
+
+Sous Windows Vista ou Windows 7, le pilote devrait être téléchargé et installé
+automatiquement.
+
+Sous Windows XP, l'assistant d'ajout de matériel va s'ouvrir :
+
+\begin{itemize}
+        %TODO: CQ: Faudrait, pour être parfait, refaire la procédure pour avoir les termes exacts...  
+        %D'autre part, les choses sont légèrement différentes avec une 2009 et une UNO (pas le même pilote, donc termes légèrement différents). 
+        %Ici, c'est pour une 2009 manifestement.
+        \item 
+
+                Sélectionnez l'option \og Non, pas cette fois ci \fg lorsque Windows
+                essaie d'effectuer une recherche automatique de pilote. Cliquez sur \og
+                Suivant \fg.
+        
+        \item 
+
+                Sélectionnez \og Installer depuis une liste ou un emplacement
+                spécifique (utilisateurs avancés) \fg puis cliquez sur \og Suivant \fg
+
+
+        \item
+
+                Assurez vous que l'option \og Rechercher le meilleur pilote à cet
+                emplacement \fg est sélectionée ; désélectionnez \og Media amovibles
+                \fg; sélectionnez \og Inclure cet emplacement \fg et indiquez le chemin
+                d'accès du répertoire \code{/FTDI USB Drivers} de l'installation
+                Arduino.  si nécessaire, les tout derniers pilotes peuvent être
+                téléchargés sur le site de FTDI (cartes Duemillanove, notamment) ou
+                bien d'Arduino directement (cartes UNO).  Cliquez sur "suivant".
+        
+        \item
+
+                L'assistant va rechercher le pilote, puis indiquer qu'un \og
+                Convertisseur série USB \fg a été détecté (Duemillanove), ou bien une
+                carte Arduino (UNO). Cliquez sur \og Terminer \fg.
+        
+        \item
+                L'assistant d'installation de nouveau matériel est alors relancé
+                (Duemillanove). Suivez les même étapes que précédemment. Cette fois-ci,
+                un \og Port série USB \fg est détecté et installé.
+
+\end{itemize}
+
+Vous pouvez vérifier que le pilote a été installé en ouvrant le gestionnaire de
+périphériques de Windows (onglet \og Matériel \fg dans le panneau de contrôle
+système).  Dans la catégorie \og Ports \fg, vous devriez voir apparaitre la
+carte Arduino sous la forme d'un \og Port série USB \fg (Duemillanove), ou bien
+directement avec le nom \og Arduino \fg.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Connecter la carte Arduino à \appName}
+
+Pour démarrer, il nous faut un objet graphique représentant la carte Arduino
+sous \appName.
+
+Pour l'obtenir, cliquez sur l'icône du tiroir \important{Accessoires} dans le menu du haut.
+
+\screenshot{01.png}
+
+Le tiroir \important{Accessoires} contient les objets les plus utilisées. Nous en
+apprendrons plus à leur sujet au fur et à mesure. Celui qui nous interesse pour
+le moment est le catalogue d'objets.
+
+\screenshot{02.png}
+
+Déposer le catalogue d'objet sur le bureau de \appName.
+
+\screenshot{03.png}
+
+Le catalogue est une sorte de boîte contenant tous les objets que l'on peut
+utiliser. Ils sont classés par catégories mais vous pouvez les aussi les trier
+de manière alphabétique.
+
+Maintenant choisissez la catégorie \important{Électronique}. Puis glissez/déposez le
+symbole de la carte Arduino sur le bureau.
+
+\screenshot{04.png}
+  
+Nous pouvons ensuite afficher le \keyword{viewer} de la carte en faisant un
+\rc sur son image. Ceci affiche une série d'icônes autour de la carte qu'on
+appelle le \keyword{halo}. Chaque icône joue une rôle particulier, comme permettre de faire \icon{rotate} tourner,
+\icon{scale} agrandir ou rétrécir l'objet, le \icon{close} supprimer...
+
+En cliquant sur \icon[\oe il]{eye}, le visualisateur apparait. Le visualisateur
+est un panneau qui permet non seulement de voir et modifier les propriétés des
+objets, mais aussi de créer des \keywordpl{script}. Les scripts sont les
+petits programmes qui vont animer nos objets (les faire bouger, tourner ou ...
+contrôler la carte Arduino).  Les propriétés et les actions sont représentés
+par des \important{briques}.
+
+\screenshot{05.png}
+
+Dans la catégorie appelée \important{Connection Arduino}, vous pourrez trouver
+des informations très utiles pour connecter votre carte Arduino. Pour changer
+de catégorie il faut double cliquer sur le petit triangle en haut à gauche du
+titre de la catégorie puis choisir la catégorie désirée.
+
+\screenshot{06.png}
+
+Nous devons d'abord spécifier quelle carte nous allons utiliser. Dans notre
+exemple nous choisirons la carte Duemilanove avec le microcontroleur ATmega328.
+Puis il faut définir le port COM par lequel la carte est connectée. Pour le
+savoir il suffit de cliquer droit sur \og Poste de travail \fg ou \og Ordinateur \fg (si
+vous êtes sur PC Windows) puis \og Propriétés \fg. Puis dans le disque dur, cliquez
+sur \og gestionnaire de système \fg.
+
+\screenshot{07.png}
+
+Maintenant regardez dans la section \og ports \fg et une fois dedans vous verrez le
+numéro du port USB près de l'inscription \og Port série USB \fg. Dans notre exemple
+c'est le port 8.
+ 
+\screenshot{08.png}
+
+Donc la valeur correspondant au port sous squeakbot sera \code{COM 8}.
+
+\screenshot{09.png}
+
+Ensuite, la commande importante est \tile{connecter}. En exécutant cette
+commande (en cliquant sur \icon[exclamation]{exclamation}), nous connectons la carte Arduino avec \appName, et la brique
+indiquant que la carte Arduino est connectée changera sa valeur en \tile{vrai}.
+
+\screenshot{10.png}
+
+Si  c'est la première fois que vous essayez de connecter Arduino, une fenêtre
+apparaitra vous demandant si vous désirez installer Firmata. Firmata est le
+programme contenant le protocole de communication permettant à la carte de
+recevoir des commandes. Il faut donc cliquer sur \og oui \fg.
+
+\screenshot{11.png}
+
+Une barre de progression vous indique où vous en êtes dans l'installation.
+ 
+\screenshot{12.png}
+
+Si tout se passe bien, une légende apparait pour indiquer que l'installation
+s'est correctement réalisée. Maintenant il faut encore connecter la carte
+Arduino (en cliquant sur le \icon{exclamation} point d'exclamation de la brique associée). Si la
+carte Arduino est connectée, la brique \tile{est connecté(e)} passe à
+\tile{vrai}.
+
+\screenshot{13.png}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Les premiers pas : faire clignoter une LED}
+
+Avant de pouvoir utiliser \appName, il est nécessaire de connecter
+physiquement la LED à la carte.  Dans cet exemple, la cathode (la patte la plus courte) doit être
+reliée à la masse (\code{GND}) et l'anode à la treizième broche (\code{D13}).
+
+%TODO/remarque(CQ): est-ce qu'on ferait pas une petite phrase pour dire que:
+%- ya déjà une LED sur la carte pour la pin13 (elle est petite, certes, mais déjà présente)
+%- pas besoin de mettre une résistance parce que yen a déjà une sur D13, mais dans le cas général, il en faut une
+%- comment on identifie anode & cathode ?
+
+\screenshot{14.jpg}
+
+\screenshot{15.png}
+
+Il est désormais possible de passer à \appName.
+
+Dans la catégorie \important{Électronique}, sélectionnons une LED, qu'on peut
+glisser et déposer dans la fenêtre principale.
+
+\screenshot{16.png}
+
+Une fois que la LED est placée dans la fenêtre principale, cliquons sur sa
+broche \code{+} pour faire apparaitre un fil, qu'on peut ensuite relier à une
+des broches de l'objet Arduino (dans notre cas, donc, la broche D13).
+
+\screenshot{17.png}
+
+Ensuite, allons dans le visualisateur de la LED, pour faire apparaitre ces briques :
+
+\screenshot{18.png}
+
+Créons maintenant un nouveau script pour faire clignoter la LED.
+
+Pour cela, il faut glisser/déposer la brique \tile{script vide} qui se trouve
+dans la catégorie \important{Scripts}. Une fois que ceci est fait, on obtient cela :
+
+\screenshot{19.png}
+
+Ensuite, il faut cliquer sur \icon[boite à outil]{toolbox} et choisir une
+brique \testtile{}.
+
+Cette brique signifie que le script va faire quelque chose selon une condition
+donnée (dans ce cas, la valeur de la LED, représentative de son état).
+
+Pour ceux qui ont déjà quelques notions de programmation, cette brique est une
+\important{structure conditionnelle} (ou structure \code{IF}).
+
+\screenshot{20.png}
+
+Afin de définir notre condition, il faut attraper la brique \tile{Led.est allumée} et
+venir la déposer à côté de \testtile{Si} (attention, il ne faut pas prendre
+la brique par la \icon{greenarrow} flêche verte puisque nous voulons
+\important{utiliser} la valeur de la LED, et non lui \important{assigner} une
+valeur).
+
+\screenshot{21.png}
+
+Maintenant, nous devons décider de ce que le script va faire lorsque la LED est
+allumée. Très logiquement, nous voulons... l 'éteindre. Donc cette fois-ci, il
+faut \important{assigner} la valeur \code{Faux} à la LED. Il faut donc prendre
+la brique \tile{Led.est allumée} par la \icon{greenarrow} flêche verte.
+
+\screenshot{22.png}
+
+\screenshot{22b.png}
+
+Maintenant, nous allons faire la même chose avec une petite différence : quand
+la LED est éteinte, \appName la fera s'allumer.  Nous devons donc faire
+glisser la brique \tile{Led.est allumée} avec sa \icon{greenarrow} flêche en face du
+\testtile{Non} de la brique \testtile{}, en s'assurant que sa valeur est
+\tile{vrai}.
+
+\screenshot{23.png}
+
+Pour conclure, nous pouvons démarrer le script en cliquant sur
+\icon[horloge]{startscript}.
+
+\screenshot{24.png}
+
+Si tout fonctionne correctement, la LED va clignoter.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Allumer une LED en appuyant sur un bouton}
+
+
+Dans la catégorie \important{Électronique} du catalogue d'objet, attrapons le
+\important{Bouton poussoir}, pour le connecter ensuite à la deuxième broche de
+la carte Arduino :
+
+\screenshot{25.png}
+
+\tip{Il vaut mieux arrêter le script précédent (en cliquant sur
+\icon[Stop]{pausescript}) pour cette partie. Par contre, gardons la LED
+branchée sur la broche 13.}
+
+Branchons le bouton (avec la résistance sur la carte de prototypage) comme
+ceci :
+
+\screenshot{26.png}
+
+\screenshot{27.png}
+
+Maintenant, ouvrons le visualiseur du bouton poussoir dans \appName et créons un nouveau
+script.
+
+\screenshot{28.png}
+
+Ajoutons ensuite une brique \testtile{} afin de savoir quand le bouton est
+pressé. Nous devons faire glisser la brique par son nom car ce n'est pas une
+instruction. Nous voulons juste connaitre sa valeur.
+
+\screenshot{29.png}
+
+Quand le bouton est appuyé nous voulons assigner à la LED la valeur
+\code{Vrai}, dans l'autre cas, nous lui assignons la valeur \code{Faux}. N'oubliez pas
+cette fois de faire glisser la brique avec sa \icon{greenarrow} flêche. Pour conclure,
+démarrons le script en cliquant sur \icon[horloge]{startscript}.
+
+\screenshot{30.png}
+
+Si tout fonctionne correctement, quand on appuie sur le bouton, la LED clignote.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Utiliser une photo-résistance}
+
+Tant que la carte Arduino est connectée, nous allons ajouter une
+\keyword{photoresistor} (qui est elle aussi dans la catégorie \important{Électronique}) à la seconde
+broche des entrées analogiques.
+
+\screenshot{31.png}
+
+Une fois branché, le montage ressemble à ceci :
+
+\screenshot{32.png}
+
+\screenshot{33.png}
+
+Maintenant, ouvrons le visualiseur de la photo-résistance et créons un nouveau
+script. Ouvrons le catalogue d'objet et faisons glisser un rectangle à partir
+de la catégorie \important{Objets de base}. Ensuite ouvrons le visualiseur du rectangle à la catégorie \important{Couleur} 
+afin de faire glisser (avec sa \icon{greenarrow} flêche) la brique \tile{luminosité} dans le script de la
+photo-résistance. Maintenant, ouvrons le visualiseur de la photo-résistance pour
+remplacer la valeur de la luminosité du rectangle (\tile{100}) par la brique
+\tile{luminosité} de la  photo-résistance (sans la flêche, car nous voulons
+juste lire la valeur).
+
+\screenshot{34.png}
+
+Pour finir, nous pouvons exécuter le script pour voir comment le rectangle
+change d'intensité lumineuse en fonction de la lumière ambiante.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Faire tourner un servo-moteur avec un rectangle}
+
+Avec la carte Arduino toujours connectée, branchons un servo-moteur (lui-aussi
+dans la catégorie \important{Électronique} du catalogue) sur la septième broche.
+
+\screenshot{35.png}
+
+Sur la carte réelle, ça doit ressembler à ça :
+
+\screenshot{36.png}
+
+Afin de gagner du temps, nous pouvons ré-utiliser le rectangle créé dans le
+dernier exercice. Ouvrons son halo, et utilisons \icon[Mise à l'échelle]{scale}
+pour changer sa taille.
+
+\screenshot{37.png}
+
+Maintenant, il faut ouvrir le visualisateur du servo-moteur et créer un nouveau
+script avec la brique \tile{servo.degrés}. Nous voulons modifier cette
+valeur, donc c'est un assignement et nous devons attraper la
+brique par sa \icon{greenarrow} flêche.
+
+\screenshot{38.png}
+
+Ensuite, il faut ouvrir le visualisateur du rectangle, et dans la catégorie
+\important{Briques de base}, prendre la brique \tile{cap}.
+
+Nous pouvons démarrer le script.
+
+\screenshot{39.png}
+
+Pendant que le script tourne, ouvrons le halo du rectangle. Et utilisons \icon[Faire tourner]{rotate} pour faire tourner le rectangle.
+
+\screenshot{40.png}
+
+Si tout s'est bien passé, le servo-moteur devrait tourner en même temps que le
+rectangle.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+
+Voilà, c'est tout ce dont vous avez besoin pour commencer à utiliser la carte
+Arduino. Les possibilités d'interaction entre l'ordinateur, Arduino et les
+autres composants électroniques que fournit \appName sont très nombreuses : nous
+vous encourageons à découvrir les autres fonctions et composants en explorant
+le reste de l'environnement Squeak (et pour celà, rien de tel que tester,
+jouer, toucher et même en casser si besoin !).
+
+Amusez-vous bien !
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\thispagestyle{empty}
+~
+\vfill
+\begin{center}
+        GIRA 2011\\
+        Planète Sciences 2011 pour la version française.
+        Cette documentation est diffusée sous les termes de la licence Creative Commons Paternité-Partage à l'identique.\\
+        \vspace{2cm}
+        \includegraphics[scale=0.5]{../../shared/images/logo_cc.png}
+\end{center}
+
+\vfill
+
+\begin{center}
+        Les sources LaTeX originales de ce guide peuvent être téléchargées sur GitHub.
+        \url{http://github.com/GIRA/Physical-Etoys}
+\end{center}
+
+\vfill
+
+\end{document}
