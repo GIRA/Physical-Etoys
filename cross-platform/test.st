@@ -1,0 +1,1 @@
+ImageMorph new openInWorld.
