@@ -43,6 +43,7 @@ QueueArray <byte> queue;
 
 extern "C" void __cxa_pure_virtual() {} //Why do I need to include this?!? #Richo
 
+void establishContact();
 void readCommand(byte);
 void setArgsToReadFor(byte);
 void readArgument(byte);
@@ -57,12 +58,18 @@ void sendDigitalValues();
 void sendAnalogValues();
 
 
-
 void setup()
 {
-     Serial.begin(57600);
+    Serial.begin(57600);
+	establishContact();
 }
 
+void establishContact() {
+  while (Serial.available() <= 0) {
+    Serial.println("HOLA, SOY ARDUINO");
+    delay(300);
+  }
+}
 
 void loop()
 {
