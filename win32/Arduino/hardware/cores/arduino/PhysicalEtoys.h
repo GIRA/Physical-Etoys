@@ -1,7 +1,6 @@
 #ifndef PhysicalEtoys_h
 #define PhysicalEtoys_h
 
-#include "WProgram.h"
 
 /* Pin values and modes */
 long pinValues[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
