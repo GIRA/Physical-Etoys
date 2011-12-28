@@ -138,7 +138,7 @@ applet_files: $(TARGET).pde
 	# refer to this new, automatically generated, file. 
 	# Not the original .pde file you actually edit...
 	test -d applet || mkdir applet
-	echo '#include "PhysicalEtoys.h"' > applet/$(TARGET).cpp
+	echo '#include "WProgram.h"' > applet/$(TARGET).cpp
 	cat $(TARGET).pde >> applet/$(TARGET).cpp
 
 elf: applet/$(TARGET).elf
