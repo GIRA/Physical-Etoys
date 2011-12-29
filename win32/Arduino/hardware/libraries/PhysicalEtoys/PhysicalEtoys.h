@@ -26,10 +26,6 @@ long getValue(long);
 void setValue(long, long);
 bool getBooleanValue(long);
 void setBooleanValue(long, bool);
-void attachServo(long);
-void detachServo(long);
-void setServoAngle(long, long);
-long getServoAngle(long);
 
 
 long minMax(long value, long min, long max)
@@ -48,11 +44,13 @@ byte getMode(long pin)
 
 void setMode(long pin, byte mode)
 {
+  if(PIN_MODE(pin) == 3)
+    SERVO(pin).detach();
   PIN_MODE(pin) = mode;
   if(mode == 0)
     pinMode(pin, INPUT);
   else if(mode == 3)
-    attachServo(pin);
+    SERVO(pin).attach(pin);
   else
     pinMode(pin, OUTPUT);
 }
@@ -84,6 +82,10 @@ void setValue(long pin, long value)
     case 2: //PWM
       analogWrite(pin, actualValue);
       break;
+	case 3: //SERVO
+	  actualValue = minMax(value, 0, 180);
+	  PIN_VALUE(pin) = actualValue;
+	  SERVO(pin).write(actualValue);
   }
 }
 
@@ -98,28 +100,6 @@ void setBooleanValue(long pin, bool value)
     setValue(pin, 1);
   else
     setValue(pin, 0);
-}
-
-void attachServo(long pin)
-{
-  SERVO(pin).attach(pin);
-}
-
-void detachServo(long pin)
-{
-  SERVO(pin).detach();
-}
-
-void setServoAngle(long pin, long angle)
-{
-  long actualValue = minMax(angle, 0, 180);
-  PIN_VALUE(pin) = actualValue;
-  SERVO(pin).write(actualValue);
-}
-
-long getServoAngle(long pin)
-{
-  return PIN_VALUE(pin);
 }
 
 
