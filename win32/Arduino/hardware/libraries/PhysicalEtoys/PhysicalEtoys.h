@@ -1,10 +1,17 @@
 #ifndef PhysicalEtoys_h
 #define PhysicalEtoys_h
 
+#include "Servo.cpp"
 
-/* Pin values and modes */
-long pinValues[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-byte pinModes[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+#define PIN_VALUE(x)                (pinValues[(x) - 2])
+#define PIN_MODE(x)                  (pinModes[(x) - 2])
+#define SERVO(x)                     (myservos[(x) - 2])
+
+
+
+long pinValues[18] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+byte pinModes[18] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+Servo myservos[12];
 
 long minMax(long value, long min, long max)
 {
@@ -17,12 +24,12 @@ long minMax(long value, long min, long max)
 
 byte getMode(long pin)
 {
-  return pinModes[pin - 3];
+  return PIN_MODE(pin);
 }
 
 void setMode(long pin, byte mode)
 {
-  pinModes[pin - 3] = mode;
+  PIN_MODE(pin) = mode;
   if(mode == 0)
     pinMode(pin, INPUT);
   else
@@ -40,14 +47,14 @@ long getValue(long pin)
   }
   else
   {
-    return pinValues[pin - 3];
+    return PIN_VALUE(pin);
   }
 }
 
 void setValue(long pin, long value)
 {
   long actualValue = minMax(value, 0, 255);
-  pinValues[pin - 3] = actualValue;
+  PIN_VALUE(pin) = actualValue;
   switch(getMode(pin))
   {
     case 1: //OUT
@@ -70,6 +77,21 @@ void setBooleanValue(long pin, bool value)
     setValue(pin, 1);
   else
     setValue(pin, 0);
+}
+
+void attachServo(long pin)
+{
+  SERVO(pin).attach(pin);
+}
+
+void detachServo(long pin)
+{
+  SERVO(pin).detach();
+}
+
+void servoAngle(long pin, long angle)
+{
+  SERVO(pin).write(minMax(angle, 0, 180));
 }
 
 
