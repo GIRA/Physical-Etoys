@@ -6,6 +6,15 @@
 long pinValues[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 byte pinModes[16] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
+long minMax(long value, long min, long max)
+{
+  if(value > max)
+    return max;
+  if(value < min)
+    return min;
+  return value;
+}
+
 byte getMode(long pin)
 {
   return pinModes[pin - 3];
@@ -37,14 +46,15 @@ long getValue(long pin)
 
 void setValue(long pin, long value)
 {
-  pinValues[pin - 3] = value;
+  long actualValue = minMax(value, 0, 255);
+  pinValues[pin - 3] = actualValue;
   switch(getMode(pin))
   {
     case 1: //OUT
-      digitalWrite(pin, value);
+      digitalWrite(pin, actualValue);
       break;
     case 2: //PWM
-      analogWrite(pin, value);
+      analogWrite(pin, actualValue);
       break;
   }
 }
