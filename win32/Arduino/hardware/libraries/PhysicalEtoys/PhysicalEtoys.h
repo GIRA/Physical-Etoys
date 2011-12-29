@@ -7,11 +7,30 @@
 #define PIN_MODE(x)                  (pinModes[(x) - 2])
 #define SERVO(x)                     (myservos[(x) - 2])
 
-
+/* Modes:
+	0 --- INPUT
+	1 --- OUTPUT
+	2 --- PWM
+	3 --- SERVO
+*/
 
 long pinValues[18] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 byte pinModes[18] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 Servo myservos[12];
+
+
+long minMax(long, long, long);
+byte getMode(long);
+void setMode(long, byte);
+long getValue(long);
+void setValue(long, long);
+bool getBooleanValue(long);
+void setBooleanValue(long, bool);
+void attachServo(long);
+void detachServo(long);
+void setServoAngle(long, long);
+long getServoAngle(long);
+
 
 long minMax(long value, long min, long max)
 {
@@ -32,6 +51,8 @@ void setMode(long pin, byte mode)
   PIN_MODE(pin) = mode;
   if(mode == 0)
     pinMode(pin, INPUT);
+  else if(mode == 3)
+    attachServo(pin);
   else
     pinMode(pin, OUTPUT);
 }
@@ -89,11 +110,17 @@ void detachServo(long pin)
   SERVO(pin).detach();
 }
 
-void servoAngle(long pin, long angle)
+void setServoAngle(long pin, long angle)
 {
-  SERVO(pin).write(minMax(angle, 0, 180));
+  long actualValue = minMax(angle, 0, 180);
+  PIN_VALUE(pin) = actualValue;
+  SERVO(pin).write(actualValue);
 }
 
+long getServoAngle(long pin)
+{
+  return PIN_VALUE(pin);
+}
 
 
 /*	<Cpp fix for "new" operator>	*/
