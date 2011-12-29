@@ -22,12 +22,13 @@
 
 
 /* MACROS */
-#define IS_COMMAND(x)                        x >> 7 == 0
-#define IS_ARGUMENT(x)                       x >> 7 == 1
-#define GET_COMMAND(x)                                 x
-#define GET_ARGUMENT(x)                          x & 127
-#define AS_COMMAND(x)                                  x
-#define AS_ARGUMENT(x)                           x | 128
+#define IS_COMMAND(x)                    ((x) >> 7 == 0)
+#define IS_ARGUMENT(x)                   ((x) >> 7 == 1)
+#define GET_COMMAND(x)                               (x)
+#define GET_ARGUMENT(x)                      ((x) & 127)
+#define AS_COMMAND(x)                                (x)
+#define AS_ARGUMENT(x)                       ((x) | 128)
+#define SERVO(x)                     (myservos[(x) - 2])
 
 
 extern "C" void __cxa_pure_virtual() {} //Why do I need to include this?!? #Richo
@@ -215,14 +216,14 @@ void executeAttachServo()
 {
 	byte pin = queue.pop();
 	
-	servo(pin).attach(pin);
+	SERVO(pin).attach(pin);
 }
 
 void executeDetachServo()
 {
 	byte pin = queue.pop();
 	
-	servo(pin).detach();	
+	SERVO(pin).detach();	
 }
 
 void executeServoAngle()
@@ -232,7 +233,7 @@ void executeServoAngle()
     byte value2 = queue.pop();
     byte value = value1 | (value2 << 7);
 	
-	servo(pin).write(value);
+	SERVO(pin).write(value);
 }
 
 
@@ -291,10 +292,6 @@ void sendAnalogValues()
     }
 }
 
-Servo servo(long index)
-{
-    return myservos[index - 2];
-}
 
 int main(void)
 {
