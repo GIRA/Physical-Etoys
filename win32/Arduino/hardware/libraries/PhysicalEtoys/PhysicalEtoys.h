@@ -26,6 +26,8 @@ long getValue(long);
 void setValue(long, long);
 bool getBooleanValue(long);
 void setBooleanValue(long, bool);
+long getDCMotorSpeed(long, long, long);
+void setDCMotorSpeed(long, long, long, long);
 
 
 long minMax(long value, long min, long max)
@@ -102,6 +104,27 @@ void setBooleanValue(long pin, bool value)
     setValue(pin, 0);
 }
 
+long getDCMotorSpeed(long d0, long d1, long en)
+{
+  return getValue(en);
+}
+
+void setDCMotorSpeed(long speed, long d0, long d1, long en)
+{
+  long actualSpeed = minMax(speed, -100, 100);
+  if(actualSpeed < 0)
+  {
+	setValue(d0, 0);
+	setValue(d1, 1);
+  }
+  else
+  {
+    setValue(d0, 1);
+	setValue(d1, 0);
+  }
+  setValue(en, abs(actualSpeed) / 100 * 255);
+  PIN_VALUE(en) = actualSpeed;
+}
 
 /*	<Cpp fix for "new" operator>	*/
 #ifndef cppfix
