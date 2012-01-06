@@ -1,5 +1,5 @@
 @echo off
-color 0A
+REM -- color 0A
 
 REM -- Cargo las variables con los parámetros
 set target=%1
