@@ -7,6 +7,7 @@ import tempfile
 import shutil
 import subprocess
 import glob
+import platform; running_windows = True if platform.system == "Windows" else False
 
 APP_NAME = "PhysicalEtoys"
 APP_VERSION = "1.0"
@@ -15,11 +16,13 @@ BOOTSTRAP_SCRIPT = "install_pe.st"
 
 ETOYS_REPO = "http://download.sugarlabs.org/sources/sucrose/glucose/etoys/"
 ETOYS_VERSION = "etoys-4.1.2390"
-
-VM_REPO="http://dl.dropbox.com/u/43706148/pe_bootstrap/"
-VM_VERSION="VM.win32.1"
 IMAGE_REPO="http://dl.dropbox.com/u/43706148/pe_bootstrap/"
 IMAGE_VERSION="fresca.etoys.31"
+
+
+# Windows only
+VM_REPO="http://dl.dropbox.com/u/43706148/pe_bootstrap/"
+VM_VERSION="VM.win32.1"
 
 
 PREFIX = "."
@@ -64,10 +67,11 @@ if not os.path.exists(ETOYS_PATH):
 else:
 	print(ETOYS_VERSION + " already downloaded. Using it.")
 
-if not os.path.exists(VM_PATH):
-	downloadto(VM_VERSION + ".tar.gz", VM_REPO, PREFIX)
-else:
-	print(VM_VERSION + " already downloaded. Using it.")
+if running_windows:
+    if not os.path.exists(VM_PATH):
+        downloadto(VM_VERSION + ".tar.gz", VM_REPO, PREFIX)
+    else:
+        print(VM_VERSION + " already downloaded. Using it.")
 	
 if not os.path.exists(IMAGE_PATH):
 	downloadto(IMAGE_VERSION + ".tar.gz", IMAGE_REPO, PREFIX)
@@ -84,8 +88,9 @@ with tarfile.open(ETOYS_PATH) as tar:
 print("Creating " + APP_PATH + " and copying relevant files")
 shutil.move(os.path.join(TMPDIR, ETOYS_VERSION, 'Content'), APP_PATH)
 
-print("Extracting VM...")
-tarfile.open(VM_PATH).extractall(APP_PATH)
+if running_windows:
+    print("Extracting VM...")
+    tarfile.open(VM_PATH).extractall(APP_PATH)
 
 print("Extracting Image...")
 tarfile.open(IMAGE_PATH).extractall(APP_PATH)
