@@ -22,8 +22,8 @@ if r in "eE":
     IMAGE_REPO = "http://download.sugarlabs.org/sources/sucrose/glucose/etoys/"
     IMAGE_VERSION = "etoys-4.1.2390"
 else:
-    IMAGE_REPO="http://dl.dropbox.com/u/43706148/pe_bootstrap/"
-    IMAGE_VERSION="fresca.etoys.31"
+    IMAGE_REPO="https://github.com/downloads/GIRA/Physical-Etoys/"
+    IMAGE_VERSION="fresca.etoys.32"
 
 print("Using image " + IMAGE_VERSION)
 IMAGE_PATH = os.path.join(PREFIX, IMAGE_VERSION + ".tar.gz")
@@ -31,7 +31,7 @@ IMAGE_PATH = os.path.join(PREFIX, IMAGE_VERSION + ".tar.gz")
 
 # Windows only
 if running_windows:
-    VM_REPO="http://dl.dropbox.com/u/43706148/pe_bootstrap/"
+    VM_REPO="https://github.com/downloads/GIRA/Physical-Etoys/"
     VM_VERSION="VM.win32.1"
     VM_PATH = os.path.join(PREFIX, VM_VERSION + ".tar.gz")
 
