@@ -22,13 +22,18 @@ class Win32_Bootstrap(PE_Bootstrap):
     def installPE(self):
         print("Bootstrapping the image. Wait for Squeak to close itself automatically.")
         #Take the .ini file out because it bothers the script execution
+        if os.path.exists(os.path.join(self.tmpDir(), "PhysicalEtoys.ini")):
+            os.remove(os.path.join(self.tmpDir(), "PhysicalEtoys.ini"))
         self.moveMatchingFiles("PhysicalEtoys.ini", \
                                self.appDir(), \
-                               self.tmpDir())                              
+                               self.tmpDir())
+        #Execute PhysicalEtoys with the startup script
         subprocess.Popen([os.path.join(self.appDir(), "PhysicalEtoys"), \
                           os.path.join(self.absAppDir() , "Content", self.appName + ".image"), \
                           os.path.join(os.getcwd(), "install_pe.st")]).wait()
         #Move the .ini file back
+        if os.path.exists(os.path.join(self.appDir(), "PhysicalEtoys.ini")):
+            os.remove(os.path.join(self.appDir(), "PhysicalEtoys.ini"))
         self.moveMatchingFiles("PhysicalEtoys.ini", \
                                self.tmpDir(), \
                                self.appDir())
