@@ -10,7 +10,7 @@ HTTPSocket
 		ensure: [proxyConfig close].
 		
 "Set author initials now to avoid waiting for PE to be downloaded and installed"
-Utilities setAuthorInitials.
+Utilities setAuthorInitials: 'Richo'.
 
 "Install latest version of all Physical Etoys packages"
 (Installer ss project: 'PhysicalEtoys') install: 'PhysicalEtoys-'.
