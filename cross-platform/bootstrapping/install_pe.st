@@ -1,6 +1,9 @@
 | proxyConfig |
 "Configure proxy settings from proxy.config file"
-[proxyConfig := (FileDirectory default directoryNamed: '..') fileNamed: 'proxy.config'.
+[proxyConfig := ((FileDirectory default
+					directoryNamed: '..')
+					directoryNamed: '..')
+					fileNamed: 'proxy.config'.
 HTTPSocket 
 	useProxyServerNamed: ((proxyConfig upTo: $:) ifNotEmpty: [:s | s] ifEmpty: [nil])
 	port: (proxyConfig upToEnd ifNotEmpty: [:s | s] ifEmpty: [80])]
@@ -27,5 +30,5 @@ Utilities setAuthorInitials.
 World 
 	addAlarm: #value 
 	withArguments: #() 
-	for: [SmalltalkImage current  snapshot: true andQuit: true]
-	at: Time millisecondClockValue + 1000
+	for: [SmalltalkImage current snapshot: true andQuit: true]
+	at: Time millisecondClockValue + 2000
