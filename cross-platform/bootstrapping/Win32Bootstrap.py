@@ -1,23 +1,23 @@
 import os
 import subprocess
 
-from PE_Bootstrap import PE_Bootstrap
+from GenericBootstrap import GenericBootstrap
 
-class Win32_Bootstrap(PE_Bootstrap):
+class Win32Bootstrap(GenericBootstrap):
+
+        WINDOWS_VM_NAME = "VM.win32.2"
 
     def installVM(self):
-        repo = "https://github.com/downloads/GIRA/Physical-Etoys/"
-        fileName = "VM.win32.2"
-        url = repo + fileName + ".tar.gz"
+        url = self.PE_BASE_REPO + self.WINDOWS_VM_NAME + ".tar.gz"
         downloadedFile = self.downloadTo(self.tmpDir(), url)
         print("Extracting VM...")
         self.extractTo(self.appDir(), downloadedFile)
     
     def installArduinoStuff(self):
-        print "To do: Installing arduino stuff for Windows..."
+        print "TODO: Installing arduino stuff for Windows..."
 
     def installNxtStuff(self):
-        print "To do: Installing nxt stuff for Windows..."
+        print "TODO: Installing nxt stuff for Windows..."
 
     def installPE(self):
         print("Bootstrapping the image. Wait for Squeak to close itself automatically.")
