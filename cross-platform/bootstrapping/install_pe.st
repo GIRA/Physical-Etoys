@@ -25,10 +25,18 @@ Utilities setAuthorInitials: 'Richo'.
 (Installer ss project: 'SqueakWiimote') install: 'Wiimote-'.
 (Installer ss project: 'DuinoBot') install: 'DuinoBot-'.
 
+"Turn on 'kid mode'"
+Preferences enable:#eToyFriendly.
+
+"Remove development windows"
+(World submorphs
+  select: [:e | e isMemberOf: SystemWindow])
+  do: [:e | e delete].
 
 "Save image and Quit"
-World 
+"World 
 	addAlarm: #value 
 	withArguments: #() 
 	for: [SmalltalkImage current snapshot: true andQuit: true]
-	at: Time millisecondClockValue + 2000
+	at: Time millisecondClockValue + 2000"
+SmalltalkImage current snapshot: true andQuit: true.

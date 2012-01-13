@@ -6,8 +6,14 @@ import tarfile
 import shutil
 import glob
 
-class PE_Bootstrap:
+class GenericBootstrap:
     
+    ETOYS_REPO = "http://download.sugarlabs.org/sources/sucrose/glucose/etoys/"
+    ETOYS_NAME = "etoys-4.1.2390"
+    
+    PE_BASE_REPO = "https://github.com/downloads/GIRA/Physical-Etoys/"
+    PE_BASE_NAME = "fresca.etoys.32"
+            
     def __init__(self, appName, appVersion):
         self.appName = appName
         self.appVersion = appVersion
@@ -47,43 +53,26 @@ class PE_Bootstrap:
     #Cross-platform:
     def installImage(self):
         self.makeDir(os.path.join(self.appDir(), 'Content'))
-        response = raw_input("\nWhich image do you want to use?\n"
-                             "\t- Richi special 'PE' base image (default: R)\n"
-                             "\t- or the stock EToys image (E)?\n")
-        if response != "" and response in "eE":
-            repo = "http://download.sugarlabs.org/sources/sucrose/glucose/etoys/"
-            fileName = "etoys-4.1.2390"
-            url = repo + fileName + ".tar.gz"
-            downloadedFile = self.downloadTo(self.tmpDir(), url)
-            print("Extracting image...")
-            self.extractTo(self.tmpDir(), downloadedFile)
-            print("Copying and renaming files...")
-            self.moveAndRenameImage(os.path.join(self.tmpDir(), fileName, 'Content'), \
-                                    os.path.join(self.appDir(), 'Content'))
-        else:
-            repo = "https://github.com/downloads/GIRA/Physical-Etoys/"
-            fileName = "fresca.etoys.32"
-            url = repo + fileName + ".tar.gz"
-            downloadedFile = self.downloadTo(self.tmpDir(), url)
-            print("Extracting image...")
-            self.extractTo(self.tmpDir(), downloadedFile)
-            print("Copying and renaming files...")
-            self.moveAndRenameImage(self.tmpDir(), \
-                                    os.path.join(self.appDir(), 'Content'))
+
+        url = self.PE_BASE_REPO + self.PE_BASE_NAME + ".tar.gz"
+        downloadedFile = self.downloadTo(self.tmpDir(), url)
+        print("Extracting image...")
+        self.extractTo(self.tmpDir(), downloadedFile)
+        print("Copying and renaming files...")
+        self.moveAndRenameImage(self.tmpDir(), \
+                                os.path.join(self.appDir(), 'Content'))
             
     def installLocale(self):
-        repo = "http://download.sugarlabs.org/sources/sucrose/glucose/etoys/"
-        fileName = "etoys-4.1.2390"
-        url = repo + fileName + ".tar.gz"
+        url = self.ETOYS_REPO + self.ETOYS_NAME + ".tar.gz"
         downloadedFile = self.downloadTo(self.tmpDir(), url)
         print("Extracting locale...")
         self.extractTo(self.tmpDir(), downloadedFile)
         print("Copying locale files...")
-        self.moveSupportedLocales(os.path.join(self.tmpDir(), fileName, 'Content', 'locale'), \
+        self.moveSupportedLocales(os.path.join(self.tmpDir(), self.ETOYS_NAME, 'Content', 'locale'), \
                                   os.path.join(self.appDir(), 'Content', 'locale'))
         
     def installTutorials(self):
-        print "To do: Installing tutorials..."
+        print "TODO: Installing tutorials..."
 
 
         
@@ -181,3 +170,25 @@ class PE_Bootstrap:
             return file_path
         except IOError as e:
             print("Could not download " + file_name + ":" + str(e))
+
+    def which(self, program):
+        """ Check if a given executable is available from the path.
+        """
+        import sys
+        if sys.platform == "win32" and not program.endswith(".exe"): program += ".exe"
+        
+        import os
+        def is_exe(fpath):
+            return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
+
+        fpath, fname = os.path.split(program)
+        if fpath:
+            if is_exe(program):
+                return program
+        else:
+            for path in os.environ["PATH"].split(os.pathsep):
+                exe_file = os.path.join(path, program)
+                if is_exe(exe_file):
+                    return exe_file
+
+        return None
