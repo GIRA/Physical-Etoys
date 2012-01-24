@@ -40,6 +40,7 @@ class GenericBootstrap:
         self.installArduinoStuff()
         self.installNxtStuff()
         self.installPE()
+        self.package()
         print("***** We are done! ******")
 
     #Accessing:
@@ -96,6 +97,9 @@ class GenericBootstrap:
         """Run squeak with the install_pe script"""
         raise Exception("Not implemented")
 
+    def package(self):
+        raise Exception("Not implemented")
+ 
 
     #Utils:
     def configureProxy(self):

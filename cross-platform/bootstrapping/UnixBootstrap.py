@@ -25,3 +25,10 @@ class UnixBootstrap(GenericBootstrap):
         subprocess.Popen(["squeak", \
                           os.path.join(self.appDir(), "Content", self.appName + ".image"), \
                           os.path.join(os.getcwd(), "install_pe.st")]) .wait()
+
+    def package(self):
+        print("Creating the tar.gz package...")
+
+        tarfile.open(os.path.join(self.appDir(), self.appNameBase() + ".tar.gz"), "w:gz").add(os.path.join(self.appDir(), "Content"), arcname = self.appNameBase())
+        print(self.appNameBase() + ".tar.gz successfully created in " + self.appDir() + ".")
+
