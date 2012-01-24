@@ -8,6 +8,8 @@ import glob
 
 class GenericBootstrap:
     
+    PLATFORM = "Undefined"
+
     ETOYS_REPO = "http://download.sugarlabs.org/sources/sucrose/glucose/etoys/"
     ETOYS_NAME = "etoys-4.1.2390"
     
@@ -41,8 +43,12 @@ class GenericBootstrap:
         print("***** We are done! ******")
 
     #Accessing:
+    def appNameBase(self):
+        return self.appName + '-' + str(self.appVersion)
+
     def appDir(self):
-        return os.path.join('.', self.appName + '.' + str(self.appVersion))
+        return os.path.join('.', self.appNameBase() + '-' + self.PLATFORM)
+
 
     def absAppDir(self):
         return os.path.join(os.getcwd(), self.appDir())

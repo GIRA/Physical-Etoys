@@ -5,7 +5,8 @@ from GenericBootstrap import GenericBootstrap
 
 class Win32Bootstrap(GenericBootstrap):
 
-        WINDOWS_VM_NAME = "VM.win32.2"
+    PLATFORM = "Windows"
+    WINDOWS_VM_NAME = "VM.win32.2"
 
     def installVM(self):
         url = self.PE_BASE_REPO + self.WINDOWS_VM_NAME + ".tar.gz"

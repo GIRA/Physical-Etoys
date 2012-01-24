@@ -1,10 +1,13 @@
 import os
 import subprocess
+import tarfile
 
 from GenericBootstrap import GenericBootstrap
 
 class UnixBootstrap(GenericBootstrap):
     
+    PLATFORM = "Unix"
+
     def installVM(self):
         if not self.which("squeak"):
             print("It seems that 'squeak' is not installed on your system.\n"
