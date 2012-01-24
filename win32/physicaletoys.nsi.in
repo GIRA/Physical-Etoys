@@ -1,0 +1,131 @@
+; <py>appName</py>.nsi 
+;--------------------------------
+
+
+; The name of the installer
+Name "<py>appNameBase()</py>"
+
+; The file to write
+OutFile "<py>appNameBase()</py>.exe"
+
+; The default installation directory
+InstallDir $PROGRAMFILES\SqueakBot
+
+; Registry key to check for directory (so if you install again, it will 
+; overwrite the old one automatically)
+InstallDirRegKey HKLM "Software\<py>appName</py>" "Install_Dir"
+
+; LoadLanguageFile "${NSISDIR}\Contrib\Language files\French.nlf"
+
+
+XPStyle on
+
+
+Icon "boiteabots.ico"
+UninstallIcon "boiteabots.ico"
+
+;--------------------------------
+
+; Pages
+
+Page components
+Page directory
+Page instfiles
+
+UninstPage uninstConfirm
+UninstPage instfiles
+
+;--------------------------------
+
+; The stuff to install
+Section "<py>appName</py> (required)"
+
+ SectionIn RO
+ 
+ ; Set output path to the installation directory.
+ SetOutPath $INSTDIR
+ 
+ ; Put file there
+ File "Content\<py>appName</py>.image"
+ File "Content\<py>appName</py>.changes"
+ File "EtoysV4.stc"
+ File "PhysicalEtoys.exe"
+ File "boiteabots.ico"
+ File "PhysicalEtoys.ini"
+ File *.dll
+; File "CHANGELOG"
+; File "LICENSE"
+
+ ; Set output path to the installation directory.
+ SetOutPath $INSTDIR\locale\fr\LC_MESSAGES
+ File /r locale\*.*
+
+; Do we have .inf file to install?
+; SetOutPath $WINDIR\inf
+; File "Pilotes\aspic_porkepic.inf"
+
+; We may want to install dlls in windows/system32?
+; SetOutPath $SYSDIR
+; File "io.dll"
+ 
+ ; Write the installation path into the registry
+ WriteRegStr HKLM SOFTWARE\<py>appName</py> "Install_Dir" "$INSTDIR"
+ 
+ ; Write the uninstall keys for Windows
+ WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\<py>appName</py>" "DisplayName" "<py>appName</py> v.<py>appVersion</py>"
+ WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\<py>appName</py>" "UninstallString" '"$INSTDIR\uninstall.exe"'
+ WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\<py>appName</py>" "NoModify" 1
+ WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\<py>appName</py>" "NoRepair" 1
+ WriteUninstaller "uninstall.exe"
+ 
+SectionEnd
+
+; Optional section (can be disabled by the user)
+Section "Start Menu shortcuts"
+
+; Let define the "Working directory"
+SetOutPath $INSTDIR
+
+ CreateDirectory "$SMPROGRAMS\<py>appName</py>"
+
+ CreateShortCut "$SMPROGRAMS\SqueakBot\Launch <py>appName</py>.lnk" "$INSTDIR\PhysicalEtoys.exe" "<py>appNameBase()</py>.image" "$INSTDIR\uninstall.exe" 0 SW_SHOWMAXIMIZED
+
+ CreateShortCut "$SMPROGRAMS\SqueakBot\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
+ 
+SectionEnd
+
+Section "Desktop shortcuts"
+
+
+ 
+ CreateShortCut "$DESKTOP\Launch <py>appName</py>.lnk" "$INSTDIR\PhysicalEtoys.exe" "<py>appNameBase()</py>.image" "$INSTDIR\uninstall.exe" 0 SW_SHOWMAXIMIZED
+
+SectionEnd
+
+;--------------------------------
+
+; Uninstaller
+
+Section "Uninstall"
+ 
+ ; Remove registry keys
+ DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\<py>appName</py>"
+ DeleteRegKey HKLM SOFTWARE\<py>appName</py>
+
+ ; Remove files and uninstaller
+ Delete $INSTDIR\*.*
+
+ ; Remove shortcuts, if any
+ Delete "$SMPROGRAMS\<py>appName</py>\*.*"
+ Delete "$DESKTOP\Launch <py>appName</py>.lnk"
+
+ ; Remove directories used
+ RMDir "$SMPROGRAMS\<py>appName</py>"
+ RMDir "$INSTDIR"
+
+;the driver for the ASPIC board is not removed yet (not really necessary).
+
+SectionEnd
+
+;--------------------------------
+
