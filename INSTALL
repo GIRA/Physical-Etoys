@@ -1,0 +1,22 @@
+Physical Etoys - Installation Notes
++++++++++++++++++++++++++++++++++++
+
+You do not have to *install* this project per-se: you
+rather *bottstrap* it to generate a clean, suitable PkysicalEtoys
+*Squeak image* that can be used as you like.
+
+Pre-requistes
+-------------
+
+- Python (it has been tested on Linux and Windows with Python 2.6)
+- an Internet connection (to download a blank EToys image and the 
+  Windows Squeak VM)
+
+Bootstrapping
+-------------
+
+- from the root directory, run 'python bootstrap.py' (or simply 
+  './bootstrap.py' if you are on a Unix machine) and follow the
+  instruction.
+- Depending on the selected target, packages containing the image
+  are built. they are ready for distribution.
