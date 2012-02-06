@@ -8,6 +8,8 @@ import glob
 
 class GenericBootstrap:
     
+    PLATFORM = "Undefined"
+
     ETOYS_REPO = "http://download.sugarlabs.org/sources/sucrose/glucose/etoys/"
     ETOYS_NAME = "etoys-4.1.2390"
     
@@ -38,11 +40,16 @@ class GenericBootstrap:
         self.installArduinoStuff()
         self.installNxtStuff()
         self.installPE()
+        self.package()
         print("***** We are done! ******")
 
     #Accessing:
+    def appNameBase(self):
+        return self.appName + '-' + str(self.appVersion)
+
     def appDir(self):
-        return os.path.join('.', self.appName + '.' + str(self.appVersion))
+        return os.path.join('.', self.appNameBase() + '-' + self.PLATFORM)
+
 
     def absAppDir(self):
         return os.path.join(os.getcwd(), self.appDir())
@@ -90,6 +97,9 @@ class GenericBootstrap:
         """Run squeak with the install_pe script"""
         raise Exception("Not implemented")
 
+    def package(self):
+        raise Exception("Not implemented")
+ 
 
     #Utils:
     def configureProxy(self):
