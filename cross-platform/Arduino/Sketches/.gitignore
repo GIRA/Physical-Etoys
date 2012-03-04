@@ -1,5 +1,5 @@
 *
 !.gitignore
-!upload.bat
+!upload.*
 !ArduinoDirectMode/
 !ArduinoDirectMode/*
