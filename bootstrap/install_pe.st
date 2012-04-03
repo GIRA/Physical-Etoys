@@ -16,14 +16,14 @@ Utilities setAuthorInitials: 'Richo'.
 (Installer ss project: 'PhysicalEtoys') install: 'PhysicalEtoys-'.
 (Installer ss project: 'CTranslator') install: 'CTranslator-'.
 (Installer ss project: 'Arduino') install: 'Arduino-Core-'.
-(Installer ss project: 'Arduino') install: 'Arduino-Compiler-'.
 (Installer ss project: 'Arduino') install: 'Arduino-Etoys-'.
+(Installer ss project: 'Arduino') install: 'Arduino-Compiler-'.
+(Installer ss project: 'Arduino') install: 'Arduino-EtoysCompiler-'.
 (Installer ss project: 'SqueakNxt') install: 'SqueakNxt-Core-'.
 (Installer ss project: 'SqueakNxt') install: 'SqueakNxt-Etoys-'.
-(Installer ss project: 'ControlLab') install: 'ControlLab-'.
-(Installer ss project: 'ParallelPort') install: 'ParallelPort-'.
-(Installer ss project: 'SqueakWiimote') install: 'Wiimote-'.
-(Installer ss project: 'DuinoBot') install: 'DuinoBot-'.
+(Installer ss project: 'SqueakNxt') install: 'SqueakNxt-Compiler-'.
+(Installer ss project: 'SqueakNxt') install: 'SqueakNxt-EtoysCompiler-'.
+
 
 "Turn on 'kid mode'"
 Preferences enable:#eToyFriendly.
@@ -34,9 +34,4 @@ Preferences enable:#eToyFriendly.
   do: [:e | e delete].
 
 "Save image and Quit"
-"World 
-	addAlarm: #value 
-	withArguments: #() 
-	for: [SmalltalkImage current snapshot: true andQuit: true]
-	at: Time millisecondClockValue + 2000"
 SmalltalkImage current snapshot: true andQuit: true.
