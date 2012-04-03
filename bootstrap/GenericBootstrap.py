@@ -14,7 +14,7 @@ class GenericBootstrap:
     ETOYS_NAME = "etoys-4.1.2390"
     
     PE_BASE_REPO = "https://github.com/downloads/GIRA/Physical-Etoys/"
-    PE_BASE_NAME = "fresca.etoys.32"
+    PE_BASE_NAME = "fresca.etoys.35"
             
     def __init__(self, appName, appVersion):
         self.appName = appName
