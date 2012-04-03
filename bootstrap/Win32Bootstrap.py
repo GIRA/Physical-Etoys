@@ -34,7 +34,7 @@ class Win32Bootstrap(GenericBootstrap):
 
         self.run(os.path.join(self.appDir(), "PhysicalEtoys"), \
                   [os.path.join(self.absAppDir() , "Content", self.appName + ".image"), \
-                   os.path.join(os.getcwd(), "install_pe.st")])
+                   os.path.join(os.getcwd(), "bootstrap", "install_pe.st")])
 
         #Move the .ini file back
         if os.path.exists(os.path.join(self.appDir(), "PhysicalEtoys.ini")):
