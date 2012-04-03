@@ -24,14 +24,11 @@ Utilities setAuthorInitials: 'Richo'.
 (Installer ss project: 'SqueakNxt') install: 'SqueakNxt-Compiler-'.
 (Installer ss project: 'SqueakNxt') install: 'SqueakNxt-EtoysCompiler-'.
 
+"Make release"
+(Smalltalk at: #PEUtilities) makePhysicalEtoysRelease.
 
-"Turn on 'kid mode'"
-Preferences enable:#eToyFriendly.
-
-"Remove development windows"
-(World submorphs
-  select: [:e | e isMemberOf: SystemWindow])
-  do: [:e | e delete].
+"Remove proxy"
+HTTPSocket useProxyServerNamed: nil port: 80.
 
 "Save image and Quit"
 SmalltalkImage current snapshot: true andQuit: true.
