@@ -28,6 +28,7 @@ bool getBooleanValue(long);
 void setBooleanValue(long, bool);
 long getDCMotorSpeed(long, long, long);
 void setDCMotorSpeed(long, long, long, long);
+long Random(long);
 
 
 long minMax(long value, long min, long max)
@@ -126,5 +127,9 @@ void setDCMotorSpeed(long speed, long d0, long d1, long en)
   PIN_VALUE(en) = actualSpeed;
 }
 
+long Random(long max)
+{
+  return random(max);
+}
 
 #endif
