@@ -86,10 +86,12 @@ ServiceBinary=%12%\%DRIVERFILENAME%.sys
 [SourceDisksFiles]
 [SourceDisksNames]
 [DeviceList]
-%DESCRIPTION%=DriverInstall, USB\VID_2341&PID_0001
+%DESCRIPTION%=DriverInstall, USB\VID_2341&PID_0032
+%DESCRIPTION%=DriverInstall, USB\VID_2341&PID_0034&MI_00
 
 [DeviceList.NTamd64]
-%DESCRIPTION%=DriverInstall, USB\VID_2341&PID_0001
+%DESCRIPTION%=DriverInstall, USB\VID_2341&PID_0032
+%DESCRIPTION%=DriverInstall, USB\VID_2341&PID_0034&MI_00
 
 
 ;------------------------------------------------------------------------------
@@ -100,7 +102,7 @@ ServiceBinary=%12%\%DRIVERFILENAME%.sys
 [Strings]
 MFGFILENAME="CDC_vista"
 DRIVERFILENAME ="usbser"
-MFGNAME="http://www.arduino.cc"
-INSTDISK="Arduino UNO Driver Installer"
-DESCRIPTION="Communications Port"
+MFGNAME="Arduino LLC (www.arduino.cc)"
+INSTDISK="Arduino Leonardo Driver Installer"
+DESCRIPTION="Arduino Leonardo"
 SERVICE="USB RS-232 Emulation Driver"
