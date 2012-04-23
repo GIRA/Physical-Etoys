@@ -23,6 +23,7 @@ Utilities setAuthorInitials: 'Richo'.
 (Installer ss project: 'SqueakNxt') install: 'SqueakNxt-Etoys-'.
 (Installer ss project: 'SqueakNxt') install: 'SqueakNxt-Compiler-'.
 (Installer ss project: 'SqueakNxt') install: 'SqueakNxt-EtoysCompiler-'.
+(Installer ss project: 'DuinoBot') install: 'DuinoBot-'.
 
 "Make release"
 (Smalltalk at: #PEUtilities) makePhysicalEtoysRelease.
