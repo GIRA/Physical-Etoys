@@ -11,10 +11,10 @@ class GenericBootstrap:
     PLATFORM = "Undefined"
 
     ETOYS_REPO = "http://download.sugarlabs.org/sources/sucrose/glucose/etoys/"
-    ETOYS_NAME = "etoys-4.1.2390"
+    ETOYS_NAME = "etoys-5.0.2406"
     
     PE_BASE_REPO = "https://github.com/downloads/GIRA/Physical-Etoys/"
-    PE_BASE_NAME = "fresca.etoys.35"
+    PE_BASE_NAME = "fresca.etoys.36"
             
     def __init__(self, appName, appVersion):
         self.appName = appName
@@ -35,6 +35,7 @@ class GenericBootstrap:
         print("*** " + self.appName + " " + self.appVersion + " bootstrapping ***\n")
         self.installVM()
         self.installImage()
+        self.installSources()
         self.installLocale()
         self.installTutorials()
         self.installArduinoStuff()
@@ -59,7 +60,7 @@ class GenericBootstrap:
 
     #Cross-platform:
     def installImage(self):
-        self.makeDir(os.path.join(self.appDir(), 'Content'))
+        self.makeDir(os.path.join(self.appDir(), 'content'))
 
         url = self.PE_BASE_REPO + self.PE_BASE_NAME + ".tar.gz"
         downloadedFile = self.downloadTo(self.tmpDir(), url)
@@ -67,7 +68,17 @@ class GenericBootstrap:
         self.extractTo(self.tmpDir(), downloadedFile)
         print("Copying and renaming files...")
         self.moveAndRenameImage(self.tmpDir(), \
-                                os.path.join(self.appDir(), 'Content'))
+                                os.path.join(self.appDir(), 'content'))
+
+    def installSources(self):
+        url = self.ETOYS_REPO + self.ETOYS_NAME + ".tar.gz"
+        downloadedFile = self.downloadTo(self.tmpDir(), url)
+        print("Extracting sources...")
+        self.extractTo(self.tmpDir(), downloadedFile)
+        print("Copying sources file...")
+        self.moveMatchingFiles("*.stc", \
+                               os.path.join(self.tmpDir(), self.ETOYS_NAME, 'Content'), \
+                               os.path.join(self.appDir(), 'content'))
             
     def installLocale(self):
         url = self.ETOYS_REPO + self.ETOYS_NAME + ".tar.gz"
@@ -76,7 +87,7 @@ class GenericBootstrap:
         self.extractTo(self.tmpDir(), downloadedFile)
         print("Copying locale files...")
         self.moveSupportedLocales(os.path.join(self.tmpDir(), self.ETOYS_NAME, 'Content', 'locale'), \
-                                  os.path.join(self.appDir(), 'Content', 'locale'))
+                                  os.path.join(self.appDir(), 'content', 'locale'))
         
     def installTutorials(self):
         print "TODO: Installing tutorials..."
@@ -122,10 +133,10 @@ class GenericBootstrap:
     def moveAndRenameImage(self, from_dir, to_dir):
         self.moveMatchingFiles("*.image", \
                                from_dir, \
-                               os.path.join(to_dir, self.appName + ".image"))
+                               os.path.join(to_dir, "pe.image"))
         self.moveMatchingFiles("*.changes", \
                                from_dir, \
-                               os.path.join(to_dir, self.appName + ".changes"))
+                               os.path.join(to_dir, "pe.changes"))
 
     def moveDir(self, from_dir, to_dir):
         shutil.move(from_dir, to_dir)
