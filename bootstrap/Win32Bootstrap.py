@@ -8,7 +8,7 @@ from GenericBootstrap import GenericBootstrap
 class Win32Bootstrap(GenericBootstrap):
 
     PLATFORM = "Windows"
-    WINDOWS_VM_NAME = "VM.win32.2"
+    WINDOWS_VM_NAME = "VM.win32.4"
 
     def installVM(self):
         url = self.PE_BASE_REPO + self.WINDOWS_VM_NAME + ".tar.gz"
@@ -33,7 +33,7 @@ class Win32Bootstrap(GenericBootstrap):
         #Execute PhysicalEtoys with the startup script
 
         self.run(os.path.join(self.appDir(), "PhysicalEtoys"), \
-                  [os.path.join(self.absAppDir() , "Content", self.appName + ".image"), \
+                  [os.path.join(self.absAppDir() , "content", "pe.image"), \
                    os.path.join(os.getcwd(), "bootstrap", "install_pe.st")])
 
         #Move the .ini file back
