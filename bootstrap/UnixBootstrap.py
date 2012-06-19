@@ -13,7 +13,7 @@ class UnixBootstrap(GenericBootstrap):
         url = self.PE_BASE_REPO + self.UNIX_VM_NAME + ".tar.gz"
         downloadedFile = self.downloadTo(self.tmpDir(), url)
         print("Extracting VM...")
-        self.extractTo(ow.path.join(self.appDir(), "vm"), downloadedFile)
+        self.extractTo(os.path.join(self.appDir(), "vm"), downloadedFile)
     
     def installArduinoStuff(self):
         print "TODO: Installing arduino stuff for Linux..."
@@ -24,7 +24,7 @@ class UnixBootstrap(GenericBootstrap):
     def installPE(self):
         print("Bootstrapping the image. Wait for Squeak to close itself automatically.")
         subprocess.Popen(["squeak", \
-                          os.path.join(self.appDir(), "content", self.appName + ".image"), \
+                          os.path.join(self.appDir(), "content", "pe.image"), \
                           os.path.join(os.getcwd(), "install_pe.st")]) .wait()
 
     def package(self):
