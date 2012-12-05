@@ -1,0 +1,37 @@
+#######################################
+# Syntax Coloring Map For MotorDC class
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+motor0	KEYWORD1
+motor1	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+#keyword	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+S0_In	LITERAL1
+S0_Out	LITERAL1
+S1_In	LITERAL1
+S1_Out	LITERAL1
+D0_Rx_In 	LITERAL1
+D0_Rx_Out	LITERAL1
+D0_Tx_In	LITERAL1
+D0_Tx_Out	LITERAL1
+D1_Rx_In	LITERAL1
+D1_Rx_Out	LITERAL1
+D1_Tx_In	LITERAL1
+D1_Tx_Out	LITERAL1
+D2_Rx_In	LITERAL1
+D2_Rx_Out	LITERAL1
+D2_Tx_In	LITERAL1
+D2_Tx_Out	LITERAL1

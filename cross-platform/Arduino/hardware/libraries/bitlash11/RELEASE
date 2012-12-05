@@ -1,0 +1,35 @@
+Bitlash Release Notes
+
+1.1
+- User Functions (addBitlashFunction)
+
+1.0
+- Fixed filenames in the examples/ folder to remove '-'
+- Updated copyright date in signon banner
+- Doc set update: see http://bitlash.net
+
+1.0rc2
+- Fixed bug which botched handling of escaped characters in string constants.
+
+1.0rc1
+- See http://bitlash.net for updates
+
+0.9
+
+- License updated to LGPL 2.1 
+- Added functions: 
+	- beep(pin, freq, duration)
+	- shiftout()
+- SOFTWARE_SERIAL_RX: build-time configurable software serial rx on pins D0-D7
+	- to support Ethernet integration
+- Adafruit XPort Direct Ethernet integration works pretty well
+- Sanguino integration
+	- Compile for Sanguino Does The Right Thing re: serial ports
+	- (there are some serial port interrupt issues pending)
+
+0.8
+
+- SOFTWARE_TX:
+	- baud(pin, baud)
+	- print #pin:expr
+...

@@ -1,0 +1,28 @@
+#######################################
+# Syntax Coloring Map For MotorDC class
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+MotorDC	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setClockwise	KEYWORD2
+getClockwise	KEYWORD2
+setSpeed	KEYWORD2
+getSpeed	KEYWORD2
+getPrevSpeed	KEYWORD2
+brake	KEYWORD2
+isBraked	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+MAX_SPEED	LITERAL1
+MIN_SPEED	LITERAL1
