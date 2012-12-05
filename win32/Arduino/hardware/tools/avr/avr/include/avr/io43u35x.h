@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: io43u35x.h,v 1.7 2005/11/10 22:19:07 joerg_wunsch Exp $ */
+/* $Id: io43u35x.h,v 1.7.4.1 2009/02/11 18:05:23 arcanum Exp $ */
 
 /* avr/io43u35x.h - definitions for AT43USB35x */
 
@@ -421,7 +421,7 @@
 
 /* Constants */
 #define    RAMEND   0x045F     /*Last On-Chip SRAM Location*/
-#define    XRAMEND  0x045F
+#define    XRAMEND  RAMEND
 #define    E2END    0x0000
 #define    FLASHEND 0x5FFF
 

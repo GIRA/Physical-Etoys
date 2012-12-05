@@ -29,7 +29,7 @@
   POSSIBILITY OF SUCH DAMAGE. 
 */
 
-/* $Id: iom32hvb.h,v 1.3.2.4 2008/08/06 22:45:05 arcanum Exp $ */
+/* $Id: iom32hvb.h,v 1.3.2.5 2009/02/11 18:05:28 arcanum Exp $ */
 
 /* avr/iom32hvb.h - definitions for ATmega32HVB. */
 
@@ -848,7 +848,7 @@
 #define SPM_PAGESIZE 64
 #define RAMEND       0x8FF     /* Last On-Chip SRAM Location */
 #define XRAMSIZE     0
-#define XRAMEND      (RAMEND + XRAMSIZE)
+#define XRAMEND      RAMEND
 #define E2END        0x3FF
 #define FLASHEND     0x7FFF
 

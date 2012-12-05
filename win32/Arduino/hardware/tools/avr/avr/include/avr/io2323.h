@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: io2323.h,v 1.8.4.4 2008/10/17 23:27:45 arcanum Exp $ */
+/* $Id: io2323.h,v 1.8.4.5 2009/02/11 18:05:22 arcanum Exp $ */
 
 /* avr/io2323.h - definitions for AT90S2323 */
 
@@ -170,7 +170,7 @@
 
 /* Constants */
 #define RAMEND     0xDF
-#define XRAMEND    0xDF
+#define XRAMEND    RAMEND
 #define E2END      0x7F
 #define E2PAGESIZE 0
 #define FLASHEND   0x07FF

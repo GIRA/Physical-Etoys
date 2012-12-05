@@ -147,7 +147,7 @@ TCL_UNSHARED_LIB_SUFFIX='${NODOT_VERSION}${DBGX}.a'
 # different place than the directory containing the source files, this
 # points to the location of the sources, not the location where Tcl was
 # compiled.
-TCL_SRC_DIR='/c/avrdev/insight/insight-6.8/tcl'
+TCL_SRC_DIR='/c/avrdev/insight/insight-6.7.1/tcl'
 
 # List of standard directories in which to look for packages during
 # "package require" commands.  Contains the "prefix" directory plus also

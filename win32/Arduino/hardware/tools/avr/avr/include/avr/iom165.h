@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iom165.h,v 1.10.2.6 2008/10/17 23:27:47 arcanum Exp $ */
+/* $Id: iom165.h,v 1.10.2.7 2009/02/11 18:05:26 arcanum Exp $ */
 
 /* avr/iom165.h - definitions for ATmega165 */
 
@@ -766,7 +766,7 @@
 /* Constants */
 #define SPM_PAGESIZE    128
 #define RAMEND          0x4FF
-#define XRAMEND         0x4FF
+#define XRAMEND         RAMEND
 #define E2END           0x1FF
 #define E2PAGESIZE      4
 #define FLASHEND        0x3FFF

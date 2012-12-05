@@ -29,7 +29,7 @@
   POSSIBILITY OF SUCH DAMAGE. 
 */
 
-/* $Id: iotn167.h,v 1.1.2.5 2008/08/06 22:45:08 arcanum Exp $ */
+/* $Id: iotn167.h,v 1.1.2.6 2009/02/11 18:05:31 arcanum Exp $ */
 
 /* avr/iotn167.h - definitions for ATtiny167. */
 
@@ -779,7 +779,7 @@
 #define RAMSIZE      (0x1FF)
 #define RAMEND       (RAMSTART + RAMSIZE - 1)  /* Last On-Chip SRAM Location */
 #define XRAMSIZE     (0)
-#define XRAMEND      (RAMEND + XRAMSIZE)
+#define XRAMEND      RAMEND
 #define E2END        (0x1FF)
 #define E2PAGESIZE   (4) 
 #define FLASHEND     (0x3FFF)

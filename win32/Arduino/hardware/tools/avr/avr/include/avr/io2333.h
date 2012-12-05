@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: io2333.h,v 1.9 2005/10/30 22:11:23 joerg_wunsch Exp $ */
+/* $Id: io2333.h,v 1.9.4.1 2009/02/11 18:05:22 arcanum Exp $ */
 
 /* avr/io2333.h - definitions for AT90S2333 */
 
@@ -437,7 +437,7 @@
 
 /* Constants */
 #define    RAMEND   0xDF    /*Last On-Chip SRAM location*/
-#define    XRAMEND  0xDF
+#define    XRAMEND  RAMEND
 #define    E2END    0x7F
 #define    FLASHEND 0x7FF
 

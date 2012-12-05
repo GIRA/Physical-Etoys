@@ -26,7 +26,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: pgmspace.h,v 1.40.2.2 2008/10/22 04:35:00 arcanum Exp $ */
+/* $Id: pgmspace.h,v 1.40.2.5 2009/11/15 06:42:40 dmix Exp $ */
 
 /*
    pgmspace.h
@@ -479,6 +479,25 @@ typedef uint64_t  prog_uint64_t PROGMEM;
     __result;                       \
 }))
 
+#define __ELPM_xmega__(addr)        \
+(__extension__({                    \
+    uint32_t __addr32 = (uint32_t)(addr); \
+    uint8_t __result;               \
+    __asm__                         \
+    (                               \
+        "in __tmp_reg__, %2" "\n\t" \
+        "out %2, %C1" "\n\t"        \
+        "movw r30, %1" "\n\t"       \
+        "elpm %0, Z+" "\n\t"        \
+        "out %2, __tmp_reg__"       \
+        : "=r" (__result)           \
+        : "r" (__addr32),           \
+          "I" (_SFR_IO_ADDR(RAMPZ)) \
+        : "r30", "r31"              \
+    );                              \
+    __result;                       \
+}))
+
 #define __ELPM_word_classic__(addr)     \
 (__extension__({                        \
     uint32_t __addr32 = (uint32_t)(addr); \
@@ -514,6 +533,26 @@ typedef uint64_t  prog_uint64_t PROGMEM;
         "movw r30, %1"  "\n\t"          \
         "elpm %A0, Z+"  "\n\t"          \
         "elpm %B0, Z"   "\n\t"          \
+        : "=r" (__result)               \
+        : "r" (__addr32),               \
+          "I" (_SFR_IO_ADDR(RAMPZ))     \
+        : "r30", "r31"                  \
+    );                                  \
+    __result;                           \
+}))
+
+#define __ELPM_word_xmega__(addr)       \
+(__extension__({                        \
+    uint32_t __addr32 = (uint32_t)(addr); \
+    uint16_t __result;                  \
+    __asm__                             \
+    (                                   \
+        "in __tmp_reg__, %2" "\n\t"     \
+        "out %2, %C1"   "\n\t"          \
+        "movw r30, %1"  "\n\t"          \
+        "elpm %A0, Z+"  "\n\t"          \
+        "elpm %B0, Z"   "\n\t"          \
+        "out %2, __tmp_reg__"           \
         : "=r" (__result)               \
         : "r" (__addr32),               \
           "I" (_SFR_IO_ADDR(RAMPZ))     \
@@ -579,6 +618,28 @@ typedef uint64_t  prog_uint64_t PROGMEM;
     __result;                             \
 }))
 
+#define __ELPM_dword_xmega__(addr)        \
+(__extension__({                          \
+    uint32_t __addr32 = (uint32_t)(addr); \
+    uint32_t __result;                    \
+    __asm__                               \
+    (                                     \
+        "in __tmp_reg__, %2" "\n\t"       \
+        "out %2, %C1"   "\n\t"            \
+        "movw r30, %1"  "\n\t"            \
+        "elpm %A0, Z+"  "\n\t"            \
+        "elpm %B0, Z+"  "\n\t"            \
+        "elpm %C0, Z+"  "\n\t"            \
+        "elpm %D0, Z"   "\n\t"            \
+        "out %2, __tmp_reg__"             \
+        : "=r" (__result)                 \
+        : "r" (__addr32),                 \
+          "I" (_SFR_IO_ADDR(RAMPZ))       \
+        : "r30", "r31"                    \
+    );                                    \
+    __result;                             \
+}))
+
 #define __ELPM_float_classic__(addr)      \
 (__extension__({                          \
     uint32_t __addr32 = (uint32_t)(addr); \
@@ -636,17 +697,60 @@ typedef uint64_t  prog_uint64_t PROGMEM;
     __result;                             \
 }))
 
+#define __ELPM_float_xmega__(addr)        \
+(__extension__({                          \
+    uint32_t __addr32 = (uint32_t)(addr); \
+    float __result;                       \
+    __asm__                               \
+    (                                     \
+        "in __tmp_reg__, %2" "\n\t"       \
+        "out %2, %C1"   "\n\t"            \
+        "movw r30, %1"  "\n\t"            \
+        "elpm %A0, Z+"  "\n\t"            \
+        "elpm %B0, Z+"  "\n\t"            \
+        "elpm %C0, Z+"  "\n\t"            \
+        "elpm %D0, Z"   "\n\t"            \
+        "out %2, __tmp_reg__"             \
+        : "=r" (__result)                 \
+        : "r" (__addr32),                 \
+          "I" (_SFR_IO_ADDR(RAMPZ))       \
+        : "r30", "r31"                    \
+    );                                    \
+    __result;                             \
+}))
+
+/* 
+Check for architectures that implement RAMPD (avrxmega3, avrxmega5, 
+avrxmega7) as they need to save/restore RAMPZ for ELPM macros so it does
+not interfere with data accesses. 
+*/
+#if defined (__AVR_HAVE_RAMPD__)
+
+#define __ELPM(addr)        __ELPM_xmega__(addr)
+#define __ELPM_word(addr)   __ELPM_word_xmega__(addr)
+#define __ELPM_dword(addr)  __ELPM_dword_xmega__(addr)
+#define __ELPM_float(addr)  __ELPM_float_xmega__(addr)
+
+#else
+
 #if defined (__AVR_HAVE_LPMX__)
+
 #define __ELPM(addr)        __ELPM_enhanced__(addr)
 #define __ELPM_word(addr)   __ELPM_word_enhanced__(addr)
 #define __ELPM_dword(addr)  __ELPM_dword_enhanced__(addr)
 #define __ELPM_float(addr)  __ELPM_float_enhanced__(addr)
+
 #else
+
 #define __ELPM(addr)        __ELPM_classic__(addr)
 #define __ELPM_word(addr)   __ELPM_word_classic__(addr)
 #define __ELPM_dword(addr)  __ELPM_dword_classic__(addr)
 #define __ELPM_float(addr)  __ELPM_float_classic__(addr)
-#endif
+
+#endif  /* __AVR_HAVE_LPMX__ */
+
+#endif  /* __AVR_HAVE_RAMPD__ */
+
 
 /** \ingroup avr_pgmspace
     \def pgm_read_byte_far(address_long)
@@ -743,6 +847,7 @@ typedef uint64_t  prog_uint64_t PROGMEM;
 
 extern PGM_VOID_P memchr_P(PGM_VOID_P, int __val, size_t __len) __ATTR_CONST__;
 extern int memcmp_P(const void *, PGM_VOID_P, size_t) __ATTR_PURE__;
+extern void *memccpy_P(void *, PGM_VOID_P, int __val, size_t);
 extern void *memcpy_P(void *, PGM_VOID_P, size_t);
 extern void *memmem_P(const void *, size_t, PGM_VOID_P, size_t) __ATTR_PURE__;
 extern PGM_VOID_P memrchr_P(PGM_VOID_P, int __val, size_t __len) __ATTR_CONST__;
@@ -767,6 +872,8 @@ extern PGM_P strrchr_P(PGM_P, int __val) __ATTR_CONST__;
 extern char *strsep_P(char **__sp, PGM_P __delim);
 extern size_t strspn_P(const char *__s, PGM_P __accept) __ATTR_PURE__;
 extern char *strstr_P(const char *, PGM_P) __ATTR_PURE__;
+extern char *strtok_P(char *__s, PGM_P __delim);
+extern char *strtok_rP(char *__s, PGM_P __delim, char **__last);
 
 #ifdef __cplusplus
 }

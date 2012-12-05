@@ -1,4 +1,4 @@
-/* Copyright (c) 2005,2007 Anatoly Sokolov
+/* Copyright (c) 2005, 2007, 2009 Anatoly Sokolov
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iotnx5.h,v 1.7 2007/10/30 10:39:06 joerg_wunsch Exp $ */
+/* $Id: iotnx5.h,v 1.7.2.2 2009/02/07 19:29:44 aesok Exp $ */
 
 /* avr/iotnx5.h - definitions for ATtiny25, ATtiny45 and ATtiny85 */
 
@@ -297,16 +297,19 @@
 #define PORF    0
 
 #define MCUCR   _SFR_IO8(0x35)
+#define BODS    7
 #define PUD     6
 #define SE      5
 #define SM1     4
 #define SM0     3
+#define BODSE   2
 #define ISC01   1
 #define ISC00   0
 
 /* Reserved [0x36] */
 
 #define SPMCSR  _SFR_IO8(0x37)
+#define RSIG    5
 #define CTPB    4
 #define RFLB    3
 #define PGWRT   2

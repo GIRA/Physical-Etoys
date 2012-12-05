@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: string.h,v 1.19.2.3 2008/08/20 16:18:54 arcanum Exp $ */
+/* $Id: string.h,v 1.19.2.4 2008/12/21 02:37:32 dmix Exp $ */
 
 /*
    string.h
@@ -82,29 +82,30 @@ extern "C" {
 
     \returns The _FFS() macro returns the position of the first
     (least significant) bit set in the word val, or 0 if no bits are set.
-    The least significant bit is position 1.
+    The least significant bit is position 1.  Only 16 bits of argument
+    are evaluted.
 */
 #if defined(__DOXYGEN__)
 #define _FFS(x)
 #else  /* !DOXYGEN */
 #define	_FFS(x) \
-	( (x) & 1 ? 1		\
-	: (x) & 2 ? 2		\
-	: (x) & 4 ? 3		\
-	: (x) & 010 ? 4		\
-	: (x) & 020 ? 5		\
-	: (x) & 040 ? 6		\
-	: (x) & 0100 ? 7	\
-	: (x) & 0200 ? 8	\
-	: (x) & 0400 ? 9	\
-	: (x) & 01000 ? 10	\
-	: (x) & 02000 ? 11	\
-	: (x) & 04000 ? 12	\
-	: (x) & 010000 ? 13	\
-	: (x) & 020000 ? 14	\
-	: (x) & 040000 ? 15	\
-	: (x) & 0100000 ? 16	\
-	: 0 )
+	(1				\
+	 + (((x) & 1) == 0)		\
+	 + (((x) & 3) == 0)		\
+	 + (((x) & 7) == 0)		\
+	 + (((x) & 017) == 0)		\
+	 + (((x) & 037) == 0)		\
+	 + (((x) & 077) == 0)		\
+	 + (((x) & 0177) == 0)		\
+	 + (((x) & 0377) == 0)		\
+	 + (((x) & 0777) == 0)		\
+	 + (((x) & 01777) == 0)		\
+	 + (((x) & 03777) == 0)		\
+	 + (((x) & 07777) == 0) 	\
+	 + (((x) & 017777) == 0)	\
+	 + (((x) & 037777) == 0)	\
+	 + (((x) & 077777) == 0)	\
+	 - (((x) & 0177777) == 0) * 16)
 #endif /* DOXYGEN */
 
 extern int ffs (int __val) __ATTR_CONST__;

@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iom325.h,v 1.12.2.5 2008/10/17 23:27:48 arcanum Exp $ */
+/* $Id: iom325.h,v 1.12.2.6 2009/02/11 18:05:28 arcanum Exp $ */
 
 /* avr/iom325.h - definitions for ATmega325 and ATmega325P.  */
 
@@ -767,7 +767,7 @@
 /* Constants */
 #define SPM_PAGESIZE    128
 #define RAMEND          0x8FF
-#define XRAMEND         0x8FF
+#define XRAMEND         RAMEND
 #define E2END           0x3FF
 #define E2PAGESIZE      4
 #define FLASHEND        0x7FFF

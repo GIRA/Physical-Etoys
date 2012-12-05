@@ -30,7 +30,7 @@
 
 /* avr/iom324.h - definitions for ATmega324 */
 
-/* $Id: iom324.h,v 1.3.2.4 2008/08/14 00:08:02 arcanum Exp $ */
+/* $Id: iom324.h,v 1.3.2.6 2009/04/25 21:01:29 arcanum Exp $ */
 
 #ifndef _AVR_IOM324_H_
 #define _AVR_IOM324_H_ 1
@@ -40,7 +40,7 @@
 /* Constants */
 #define SPM_PAGESIZE    128
 #define RAMEND          0x08FF
-#define XRAMEND         0x08FF
+#define XRAMEND         RAMEND
 #define E2END           0x3FF
 #define E2PAGESIZE      4
 #define FLASHEND        0x7FFF
@@ -83,6 +83,12 @@
 #define __LOCK_BITS_EXIST
 #define __BOOT_LOCK_BITS_0_EXIST
 #define __BOOT_LOCK_BITS_1_EXIST 
+
+
+/* Signature (ATmega324P) */
+#define SIGNATURE_0 0x1E
+#define SIGNATURE_1 0x95
+#define SIGNATURE_2 0x08 
 
 
 #endif /* _AVR_IOM324_H_ */

@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iotn13.h,v 1.8.2.6 2008/10/17 23:27:51 arcanum Exp $ */
+/* $Id: iotn13.h,v 1.8.2.7 2009/02/11 18:05:31 arcanum Exp $ */
 
 /* avr/iotn13.h - definitions for ATtiny13 */
 
@@ -321,7 +321,7 @@
 
 #define SPM_PAGESIZE 32
 #define RAMEND      0x9F
-#define XRAMEND     0x9F
+#define XRAMEND     RAMEND
 #define E2END       0x3F
 #define E2PAGESIZE  4
 #define FLASHEND    0x3FF

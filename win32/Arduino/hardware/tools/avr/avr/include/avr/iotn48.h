@@ -29,9 +29,9 @@
   POSSIBILITY OF SUCH DAMAGE. 
 */
 
-/* $Id: iotn48.h,v 1.4.2.9 2008/10/17 23:27:52 arcanum Exp $ */
+/* $Id: iotn48.h,v 1.4.2.15 2009/03/27 16:26:07 arcanum Exp $ */
 
-/* avr/iotn48.h - definitions for ATtiny43U */
+/* avr/iotn48.h - definitions for ATtiny48 */
 
 /* This file should only be included from <avr/io.h>, never directly. */
 
@@ -253,14 +253,14 @@
 #define TCNT0_7 7
 
 #define OCR0A _SFR_IO8(0x27)
-#define OCROA_0 0
-#define OCROA_1 1
-#define OCROA_2 2
-#define OCROA_3 3
-#define OCROA_4 4
-#define OCROA_5 5
-#define OCROA_6 6
-#define OCROA_7 7
+#define OCR0A_0 0
+#define OCR0A_1 1
+#define OCR0A_2 2
+#define OCR0A_3 3
+#define OCR0A_4 4
+#define OCR0A_5 5
+#define OCR0A_6 6
+#define OCR0A_7 7
 
 #define OCR0B _SFR_IO8(0x28)
 #define OCR0B_0 0
@@ -331,7 +331,6 @@
 #define SE 0
 #define SM0 1
 #define SM1 2
-#define SM2 3
 
 #define MCUSR _SFR_IO8(0x34)
 #define PORF 0
@@ -493,7 +492,6 @@
 #define MUX3 3
 #define ADLAR 5
 #define REFS0 6
-#define REFS1 7
 
 #define DIDR0 _SFR_MEM8(0x7E)
 #define ADC0D 0
@@ -508,7 +506,6 @@
 #define DIDR1 _SFR_MEM8(0x7F)
 #define AIN0D 0
 #define AIN1D 1
-#define AREFD 2
 
 #define TCCR1A _SFR_MEM8(0x80)
 #define WGM10 0
@@ -676,7 +673,8 @@
 #define TWAM5 6
 #define TWAM6 7
 
-#define TWIHSR _SFR_MEM8(0xBE)
+#define TWIHSR _SFR_MEM8(0xBE)  /* Deprecated */
+#define TWHSR _SFR_MEM8(0xBE)
 #define TWIHS 0
 
 
@@ -710,7 +708,7 @@
 #define SPM_PAGESIZE 32
 #define RAMEND       0x1FF
 #define XRAMSIZE     0
-#define XRAMEND      (RAMEND + XRAMSIZE)
+#define XRAMEND      RAMEND
 #define E2END        0x3F
 #define E2PAGESIZE   4
 #define FLASHEND     0xFFF

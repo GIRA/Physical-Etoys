@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: io76c711.h,v 1.5 2004/11/01 21:19:54 arcanum Exp $ */
+/* $Id: io76c711.h,v 1.5.6.1 2009/02/11 18:05:23 arcanum Exp $ */
 
 /* avr/io76c711.h - definitions for AT76C711 */
 
@@ -472,7 +472,7 @@
 
 /* Last memory addresses */
 #define RAMEND		0x07FF
-#define XRAMEND		0x07FF
+#define XRAMEND		RAMEND
 #define E2END		0
 #define FLASHEND	0x3FFF
 

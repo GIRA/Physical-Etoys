@@ -29,7 +29,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: wdt.h,v 1.44.2.16 2008/11/06 14:55:34 arcanum Exp $ */
+/* $Id: wdt.h,v 1.44.2.33 2009/12/03 18:38:59 arcanum Exp $ */
 
 /*
    avr/wdt.h - macros for AVR watchdog timer
@@ -130,11 +130,20 @@
 */
 
 
-#if defined(__AVR_ATxmega64A1__) \
+#if defined(__AVR_ATxmega16A4__) \
+|| defined(__AVR_ATxmega16D4__) \
+|| defined(__AVR_ATxmega32A4__) \
+|| defined(__AVR_ATxmega32D4__) \
+|| defined(__AVR_ATxmega64A1__) \
 || defined(__AVR_ATxmega64A3__) \
+|| defined(__AVR_ATxmega64D3__) \
 || defined(__AVR_ATxmega128A1__) \
 || defined(__AVR_ATxmega128A3__) \
+|| defined(__AVR_ATxmega128D3__) \
+|| defined(__AVR_ATxmega192A3__) \
+|| defined(__AVR_ATxmega192D3__) \
 || defined(__AVR_ATxmega256A3__) \
+|| defined(__AVR_ATxmega256D3__) \
 || defined(__AVR_ATxmega256A3B__)
 
 /*
@@ -167,6 +176,7 @@ __asm__ __volatile__ ( \
 || defined(__AVR_AT90PWM3__) \
 || defined(__AVR_AT90PWM316__) \
 || defined(__AVR_AT90PWM3B__) \
+|| defined(__AVR_AT90PWM81__) \
 || defined(__AVR_AT90USB1286__) \
 || defined(__AVR_AT90USB1287__) \
 || defined(__AVR_AT90USB162__) \
@@ -176,46 +186,83 @@ __asm__ __volatile__ ( \
 || defined(__AVR_ATmega1280__) \
 || defined(__AVR_ATmega1281__) \
 || defined(__AVR_ATmega1284P__) \
+|| defined(__AVR_ATmega128RFA1__) \
 || defined(__AVR_ATmega164__) \
+|| defined(__AVR_ATmega164A__) \
 || defined(__AVR_ATmega164P__) \
 || defined(__AVR_ATmega165__) \
+|| defined(__AVR_ATmega165A__) \
 || defined(__AVR_ATmega165P__) \
 || defined(__AVR_ATmega168__) \
+|| defined(__AVR_ATmega168A__) \
 || defined(__AVR_ATmega168P__) \
 || defined(__AVR_ATmega169__) \
+|| defined(__AVR_ATmega169A__) \
 || defined(__AVR_ATmega169P__) \
+|| defined(__AVR_ATmega169PA__) \
 || defined(__AVR_ATmega16HVA__) \
+|| defined(__AVR_ATmega16HVA2__) \
+|| defined(__AVR_ATmega16HVB__) \
+|| defined(__AVR_ATmega16M1__) \
+|| defined(__AVR_ATmega16U2__) \
+|| defined(__AVR_ATmega16U4__) \
 || defined(__AVR_ATmega2560__) \
 || defined(__AVR_ATmega2561__) \
 || defined(__AVR_ATmega324__) \
+|| defined(__AVR_ATmega324A__) \
 || defined(__AVR_ATmega324P__) \
+|| defined(__AVR_ATmega324PA__) \
 || defined(__AVR_ATmega325__) \
 || defined(__AVR_ATmega3250__) \
+|| defined(__AVR_ATmega328__) \
 || defined(__AVR_ATmega328P__) \
 || defined(__AVR_ATmega329__) \
+|| defined(__AVR_ATmega329P__) \
+|| defined(__AVR_ATmega329PA__) \
 || defined(__AVR_ATmega3290__) \
 || defined(__AVR_ATmega3290P__) \
 || defined(__AVR_ATmega32C1__) \
 || defined(__AVR_ATmega32HVB__) \
 || defined(__AVR_ATmega32M1__) \
+|| defined(__AVR_ATmega32U2__) \
 || defined(__AVR_ATmega32U4__) \
 || defined(__AVR_ATmega32U6__) \
 || defined(__AVR_ATmega406__) \
 || defined(__AVR_ATmega48__) \
+|| defined(__AVR_ATmega48A__) \
 || defined(__AVR_ATmega48P__) \
 || defined(__AVR_ATmega640__) \
 || defined(__AVR_ATmega644__) \
+|| defined(__AVR_ATmega644A__) \
 || defined(__AVR_ATmega644P__) \
+|| defined(__AVR_ATmega644PA__) \
 || defined(__AVR_ATmega645__) \
+|| defined(__AVR_ATmega645A__) \
+|| defined(__AVR_ATmega645P__) \
 || defined(__AVR_ATmega6450__) \
+|| defined(__AVR_ATmega6450A__) \
+|| defined(__AVR_ATmega6450P__) \
 || defined(__AVR_ATmega649__) \
+|| defined(__AVR_ATmega649A__) \
 || defined(__AVR_ATmega6490__) \
-|| defined(__AVR_ATmega8HVA__) \
+|| defined(__AVR_ATmega6490A__) \
+|| defined(__AVR_ATmega6490P__) \
+|| defined(__AVR_ATmega649P__) \
+|| defined(__AVR_ATmega64C1__) \
+|| defined(__AVR_ATmega64HVE__) \
+|| defined(__AVR_ATmega64M1__) \
 || defined(__AVR_ATmega88__) \
+|| defined(__AVR_ATmega88A__) \
 || defined(__AVR_ATmega88P__) \
+|| defined(__AVR_ATmega88PA__) \
+|| defined(__AVR_ATmega8HVA__) \
+|| defined(__AVR_ATmega8U2__) \
 || defined(__AVR_ATtiny48__) \
 || defined(__AVR_ATtiny88__) \
-|| defined(__AVR_ATtiny167__)
+|| defined(__AVR_ATtiny87__) \
+|| defined(__AVR_ATtiny167__) \
+|| defined(__AVR_AT90SCR100__) \
+|| defined(__AVR_ATA6289__)
 
 /* Use STS instruction. */
  
@@ -359,7 +406,8 @@ __asm__ __volatile__ (  \
     ATmega640, ATmega1280, ATmega1281, ATmega2560, ATmega2561,
     ATmega8HVA, ATmega16HVA, ATmega32HVB,
     ATmega406, ATmega1284P,
-    AT90PWM1, AT90PWM2, AT90PWM2B, AT90PWM3, AT90PWM3B, AT90PWM216, AT90PWM316
+    AT90PWM1, AT90PWM2, AT90PWM2B, AT90PWM3, AT90PWM3B, AT90PWM216, AT90PWM316,
+    AT90PWM81,
     AT90USB82, AT90USB162,
     AT90USB646, AT90USB647, AT90USB1286, AT90USB1287,
     ATtiny48, ATtiny88.
@@ -379,7 +427,8 @@ __asm__ __volatile__ (  \
     ATmega640, ATmega1280, ATmega1281, ATmega2560, ATmega2561,
     ATmega8HVA, ATmega16HVA, ATmega32HVB,
     ATmega406, ATmega1284P,
-    AT90PWM1, AT90PWM2, AT90PWM2B, AT90PWM3, AT90PWM3B, AT90PWM216, AT90PWM316
+    AT90PWM1, AT90PWM2, AT90PWM2B, AT90PWM3, AT90PWM3B, AT90PWM216, AT90PWM316,
+    AT90PWM81,
     AT90USB82, AT90USB162,
     AT90USB646, AT90USB647, AT90USB1286, AT90USB1287,
     ATtiny48, ATtiny88.

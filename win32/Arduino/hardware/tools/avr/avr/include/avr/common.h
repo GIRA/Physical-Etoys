@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: common.h,v 1.3.4.3 2008/03/24 17:11:06 arcanum Exp $ */
+/* $Id: common.h,v 1.3.4.4 2009/03/02 23:36:17 arcanum Exp $ */
 
 
 #ifndef _AVR_COMMON_H
@@ -247,6 +247,36 @@ and families.
 #    define AVR_STACK_POINTER_LO_ADDR  _SFR_MEM_ADDR(SPL)
 #  else
 #    define AVR_STACK_POINTER_LO_ADDR  _SFR_IO_ADDR(SPL)
+#  endif
+#endif
+
+/* RAMPD Register */
+#if defined(RAMPD)
+#  define AVR_RAMPD_REG   RAMPD
+#  if __AVR_ARCH__ >= 100
+#    define AVR_RAMPD_ADDR  _SFR_MEM_ADDR(RAMPD)
+#  else
+#    define AVR_RAMPD_ADDR  _SFR_IO_ADDR(RAMPD)
+#  endif
+#endif
+
+/* RAMPX Register */
+#if defined(RAMPX)
+#  define AVR_RAMPX_REG   RAMPX
+#  if __AVR_ARCH__ >= 100
+#    define AVR_RAMPX_ADDR  _SFR_MEM_ADDR(RAMPX)
+#  else
+#    define AVR_RAMPX_ADDR  _SFR_IO_ADDR(RAMPX)
+#  endif
+#endif
+
+/* RAMPY Register */
+#if defined(RAMPY)
+#  define AVR_RAMPY_REG   RAMPY
+#  if __AVR_ARCH__ >= 100
+#    define AVR_RAMPY_ADDR  _SFR_MEM_ADDR(RAMPY)
+#  else
+#    define AVR_RAMPY_ADDR  _SFR_IO_ADDR(RAMPY)
 #  endif
 #endif
 

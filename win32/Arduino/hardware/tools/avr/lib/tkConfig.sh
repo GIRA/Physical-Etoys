@@ -43,7 +43,7 @@ TK_PREFIX='/c/WinAVR'
 TK_EXEC_PREFIX='/c/WinAVR'
 
 # -I switch(es) to use to make all of the X11 include files accessible:
-TK_XINCLUDES='-I"c:/avrdev/insight/insight-6.8/tk/xlib"'
+TK_XINCLUDES='-I"c:/avrdev/insight/insight-6.7.1/tk/xlib"'
 
 # -l flag to pass to the linker to pick up the Tcl library
 TK_LIB_FLAG=''
@@ -62,7 +62,7 @@ TK_LIB_SPEC=''
 # different place than the directory containing the source files, this
 # points to the location of the sources, not the location where Tk was
 # compiled.
-TK_SRC_DIR='/c/avrdev/insight/insight-6.8/tk'
+TK_SRC_DIR='/c/avrdev/insight/insight-6.7.1/tk'
 
 # Needed if you want to make a 'fat' shared library library
 # containing tk objects or link a different wish.

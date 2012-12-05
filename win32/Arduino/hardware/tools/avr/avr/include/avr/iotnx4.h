@@ -1,4 +1,4 @@
-/* Copyright (c) 2005,2007 Anatoly Sokolov
+/* Copyright (c) 2005, 2007, 2009 Anatoly Sokolov
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iotnx4.h,v 1.4 2007/05/14 22:21:41 joerg_wunsch Exp $ */
+/* $Id: iotnx4.h,v 1.4.2.2 2009/02/07 19:29:44 aesok Exp $ */
 
 /* avr/iotnx4.h - definitions for ATtiny24, ATtiny44 and ATtiny84 */
 
@@ -335,16 +335,19 @@
 #define PORF    0
 
 #define MCUCR   _SFR_IO8(0x35)
+#define BODS    7
 #define PUD     6
 #define SE      5
 #define SM1     4
 #define SM0     3
+#define BODSE   2
 #define ISC01   1
 #define ISC00   0
 
 #define OCR0A   _SFR_IO8(0x36)
 
 #define SPMCSR  _SFR_IO8(0x37)
+#define RSIG    5
 #define CTPB    4
 #define RFLB    3
 #define PGWRT   2

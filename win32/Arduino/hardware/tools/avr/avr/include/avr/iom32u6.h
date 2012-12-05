@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iom32u6.h,v 1.1.2.2 2008/10/30 22:04:09 arcanum Exp $ */
+/* $Id: iom32u6.h,v 1.1.2.4 2009/02/11 18:05:29 arcanum Exp $ */
 
 /* avr/iom32u6.h - definitions for ATmega32U6 */
 
@@ -356,14 +356,14 @@
 #define TCNT0_7 7
 
 #define OCR0A _SFR_IO8(0x27)
-#define OCROA_0 0
-#define OCROA_1 1
-#define OCROA_2 2
-#define OCROA_3 3
-#define OCROA_4 4
-#define OCROA_5 5
-#define OCROA_6 6
-#define OCROA_7 7
+#define OCR0A_0 0
+#define OCR0A_1 1
+#define OCR0A_2 2
+#define OCR0A_3 3
+#define OCR0A_4 4
+#define OCR0A_5 5
+#define OCR0A_6 6
+#define OCR0A_7 7
 
 #define OCR0B _SFR_IO8(0x28)
 #define OCR0B_0 0
@@ -1356,7 +1356,7 @@
 #define RAMEND       (RAMSTART + RAMSIZE - 1)
 #define XRAMSTART    (0x2200)
 #define XRAMSIZE     (65536)
-#define XRAMEND      (XRAMSTART + XRAMSIZE - 1)
+#define XRAMEND      (XRAMSIZE - 1)
 #define E2END        (0x3FF)
 #define E2PAGESIZE   (4)
 #define FLASHEND     (0x7FFF)

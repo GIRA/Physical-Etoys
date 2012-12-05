@@ -28,12 +28,17 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: fuse.h,v 1.3.2.5 2008/07/18 20:32:14 arcanum Exp $ */
+/* $Id: fuse.h,v 1.3.2.6 2009/07/14 17:24:31 arcanum Exp $ */
 
 /* avr/fuse.h - Fuse API */
 
 #ifndef _AVR_FUSE_H_
 #define _AVR_FUSE_H_ 1
+
+/* This file must be explicitly included by <avr/io.h>. */
+#if !defined(_AVR_IO_H_)
+#error "You must #include <avr/io.h> and not <avr/fuse.h> by itself."
+#endif
 
 
 /** \file */

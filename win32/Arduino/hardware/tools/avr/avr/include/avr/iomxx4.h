@@ -30,7 +30,7 @@
 
 /* avr/iomXX4.h - definitions for ATmega164P/324P/644P and ATmega644 */
 
-/* $Id: iomxx4.h,v 1.13.2.4 2008/08/10 17:02:46 arcanum Exp $ */
+/* $Id: iomxx4.h,v 1.13.2.5 2009/02/06 23:32:02 arcanum Exp $ */
 
 #ifndef _AVR_IOMXX4_H_
 #define _AVR_IOMXX4_H_ 1
@@ -322,8 +322,10 @@
 
 #define MCUCR	_SFR_IO8(0X35)
 #define JTD	7
+#if !defined(__AVR_ATmega644__)
 #define BODS    6
 #define BODSE   5
+#endif
 #define PUD	4
 #define IVSEL	1
 #define IVCE	0

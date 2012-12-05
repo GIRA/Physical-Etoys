@@ -31,7 +31,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iom169p.h,v 1.2.2.5 2008/10/17 23:27:48 arcanum Exp $ */
+/* $Id: iom169p.h,v 1.2.2.6 2009/02/11 18:05:27 arcanum Exp $ */
 
 /* iom169p.h - definitions for ATmega169P */
 
@@ -976,7 +976,7 @@
 /* Constants */
 #define SPM_PAGESIZE 128
 #define RAMEND		0x4FF
-#define XRAMEND		0x4FF
+#define XRAMEND		RAMEND
 #define E2END		0x1FF
 #define E2PAGESIZE  4
 #define FLASHEND	0x3FFF

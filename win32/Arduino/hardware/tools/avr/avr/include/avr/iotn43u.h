@@ -29,7 +29,7 @@
   POSSIBILITY OF SUCH DAMAGE. 
 */
 
-/* $Id: iotn43u.h,v 1.4.2.5 2008/10/17 23:27:52 arcanum Exp $ */
+/* $Id: iotn43u.h,v 1.4.2.6 2009/02/11 18:05:32 arcanum Exp $ */
 
 /* avr/iotn43u.h - definitions for ATtiny43U */
 
@@ -526,7 +526,7 @@
 /* Constants */
 #define SPM_PAGESIZE   64
 #define RAMEND         0x15F
-#define XRAMEND        0x00
+#define XRAMEND        RAMEND
 #define E2END          0x3F
 #define E2PAGESIZE     4
 #define FLASHEND       0xFFF

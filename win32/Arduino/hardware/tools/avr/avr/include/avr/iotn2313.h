@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iotn2313.h,v 1.14.2.6 2008/10/17 23:27:51 arcanum Exp $ */
+/* $Id: iotn2313.h,v 1.14.2.8 2009/02/11 18:44:42 arcanum Exp $ */
 
 /* iotn2313.h derived from io2313.h by Bob Paddock.
 
@@ -584,7 +584,7 @@
 /* Constants */
 #define SPM_PAGESIZE 32
 #define RAMEND       0xDF
-#define XRAMEND      0xDF
+#define XRAMEND      RAMEND
 #define E2END        0x7F
 #define E2PAGESIZE   4
 #define FLASHEND     0x07FF
@@ -602,7 +602,7 @@
 #define FUSE_SUT1        (unsigned char)~_BV(5)
 #define FUSE_CKOUT       (unsigned char)~_BV(6)
 #define FUSE_CKDIV8      (unsigned char)~_BV(7)
-#define LFUSE_DEFAULT (FUSE_CKSEL0 & FUSE_CKSEL2 & FUSE_CKSEL3 & FUSE_SUT0 & FUSE_CKDIV8)
+#define LFUSE_DEFAULT (FUSE_CKSEL0 & FUSE_CKSEL1 & FUSE_CKSEL3 & FUSE_SUT0 & FUSE_CKDIV8)
 
 /* High Fuse Byte */
 #define FUSE_RSTDISBL    (unsigned char)~_BV(0)

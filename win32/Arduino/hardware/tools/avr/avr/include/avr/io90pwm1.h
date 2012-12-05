@@ -29,7 +29,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: io90pwm1.h,v 1.3.2.3 2008/08/06 22:44:59 arcanum Exp $ */
+/* $Id: io90pwm1.h,v 1.3.2.4 2009/02/11 18:05:24 arcanum Exp $ */
 
 /* avr/iopwm1.h - definitions for AT90PWM1 device */
 
@@ -1071,7 +1071,7 @@
 #define SPM_PAGESIZE    64
 
 #define RAMEND      0x02FF
-#define XRAMEND     0x02FF
+#define XRAMEND     RAMEND
 #define E2END       0x01FF
 #define FLASHEND    0x0FFF
 

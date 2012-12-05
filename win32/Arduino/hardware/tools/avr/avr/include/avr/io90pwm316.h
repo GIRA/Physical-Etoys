@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: io90pwm316.h,v 1.7.2.7 2008/10/17 23:27:46 arcanum Exp $ */
+/* $Id: io90pwm316.h,v 1.7.2.8 2009/02/11 18:05:24 arcanum Exp $ */
 
 /* avr/io90pwm316.h - definitions for AT90PWM316 */
 
@@ -1165,7 +1165,7 @@
 
 #define RAMEND         0x4FF
 #define XRAMSIZE       0
-#define XRAMEND        (RAMEND + XRAMSIZE)
+#define XRAMEND        RAMEND
 #define E2END          0x1FF
 #define E2PAGESIZE     4
 #define FLASHEND       0x3FFF

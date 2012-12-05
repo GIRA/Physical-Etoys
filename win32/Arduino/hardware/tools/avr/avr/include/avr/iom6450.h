@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iom6450.h,v 1.11.2.6 2008/10/17 23:27:50 arcanum Exp $ */
+/* $Id: iom6450.h,v 1.11.2.7 2009/02/11 18:05:30 arcanum Exp $ */
 
 /* avr/iom6450.h - definitions for ATmega6450 */
 
@@ -853,7 +853,7 @@
 /* Constants */
 #define SPM_PAGESIZE 256
 #define RAMEND       0x10FF
-#define XRAMEND      0x10FF
+#define XRAMEND      RAMEND
 #define E2END        0x7FF
 #define E2PAGESIZE   8
 #define FLASHEND     0xFFFF

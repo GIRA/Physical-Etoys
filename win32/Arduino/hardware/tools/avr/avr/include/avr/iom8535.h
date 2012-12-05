@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iom8535.h,v 1.11.2.5 2008/10/17 23:27:50 arcanum Exp $ */
+/* $Id: iom8535.h,v 1.11.2.6 2009/02/11 18:05:30 arcanum Exp $ */
 
 /* avr/iom8535.h - definitions for ATmega8535 */
 
@@ -667,7 +667,7 @@
 /* Constants */
 #define SPM_PAGESIZE 64
 #define RAMEND       0x25F    /* Last On-Chip SRAM Location */
-#define XRAMEND      0x25F
+#define XRAMEND      RAMEND
 #define E2END        0x1FF
 #define E2PAGESIZE   4
 #define FLASHEND     0x1FFF

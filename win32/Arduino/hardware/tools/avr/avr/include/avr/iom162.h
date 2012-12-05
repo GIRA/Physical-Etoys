@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iom162.h,v 1.13.2.5 2008/10/17 23:27:47 arcanum Exp $ */
+/* $Id: iom162.h,v 1.13.2.6 2008/11/17 16:20:35 arcanum Exp $ */
 
 /* iom162.h - definitions for ATmega162 */
 
@@ -575,7 +575,8 @@
 /* ASSR bit definitions */
 
 #define AS2	3
-#define TCON2UB	2
+#define TCN2UB  2
+#define TCON2UB	2   /* Kept for backwards compatibility. */
 #define OCR2UB	1
 #define TCR2UB	0
 

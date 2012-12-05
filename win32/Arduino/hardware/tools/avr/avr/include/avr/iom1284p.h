@@ -29,7 +29,7 @@
   POSSIBILITY OF SUCH DAMAGE. 
 */
 
-/* $Id: iom1284p.h,v 1.2.2.11 2008/10/17 23:27:47 arcanum Exp $ */
+/* $Id: iom1284p.h,v 1.2.2.13 2009/02/11 18:05:25 arcanum Exp $ */
 
 /* avr/iom1284p.h - definitions for ATmega1284P. */
 
@@ -288,14 +288,14 @@
 #define TCNT0_7 7
 
 #define OCR0A _SFR_IO8(0x27)
-#define OCROA_0 0
-#define OCROA_1 1
-#define OCROA_2 2
-#define OCROA_3 3
-#define OCROA_4 4
-#define OCROA_5 5
-#define OCROA_6 6
-#define OCROA_7 7
+#define OCR0A_0 0
+#define OCR0A_1 1
+#define OCR0A_2 2
+#define OCR0A_3 3
+#define OCR0A_4 4
+#define OCR0A_5 5
+#define OCR0A_6 6
+#define OCR0A_7 7
 
 #define OCR0B _SFR_IO8(0x28)
 #define OCR0B_0 0
@@ -1079,7 +1079,7 @@
 #define SPM_PAGESIZE 256
 #define RAMEND       0x40FF    /* Last On-Chip SRAM Location */
 #define XRAMSIZE     0
-#define XRAMEND      (RAMEND + XRAMSIZE)
+#define XRAMEND      RAMEND
 #define E2END        0xFFF
 #define E2PAGESIZE   8
 #define FLASHEND     0x1FFFF

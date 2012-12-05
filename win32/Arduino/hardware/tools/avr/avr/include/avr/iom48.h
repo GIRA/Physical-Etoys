@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iom48.h,v 1.3.2.3 2008/08/14 00:08:03 arcanum Exp $ */
+/* $Id: iom48.h,v 1.3.2.4 2009/02/11 18:05:29 arcanum Exp $ */
 
 #ifndef _AVR_IOM48_H_
 #define _AVR_IOM48_H_ 1
@@ -38,7 +38,7 @@
 /* Constants */
 #define SPM_PAGESIZE 64
 #define RAMEND      0x2FF
-#define XRAMEND     0x2FF
+#define XRAMEND     RAMEND
 #define E2END       0xFF
 #define E2PAGESIZE  4
 #define FLASHEND    0xFFF

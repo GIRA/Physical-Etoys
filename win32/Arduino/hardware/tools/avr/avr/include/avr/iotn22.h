@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iotn22.h,v 1.9.2.5 2008/10/17 23:27:51 arcanum Exp $ */
+/* $Id: iotn22.h,v 1.9.2.6 2009/02/11 18:05:31 arcanum Exp $ */
 
 /* avr/iotn22.h - definitions for ATtiny22 */
 
@@ -176,7 +176,7 @@
 
 /* Constants */
 #define RAMEND     0xDF
-#define XRAMEND    0xDF
+#define XRAMEND    RAMEND
 #define E2END      0x7F
 #define E2PAGESIZE 0
 #define FLASHEND   0x07FF

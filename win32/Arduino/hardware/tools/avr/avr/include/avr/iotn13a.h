@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iotn13a.h,v 1.1.2.5 2008/08/06 22:45:08 arcanum Exp $ */
+/* $Id: iotn13a.h,v 1.1.2.8 2009/04/28 08:51:16 arcanum Exp $ */
 
 /* avr/iotn13a.h - definitions for ATtiny13 */
 
@@ -187,8 +187,7 @@
 
 #define PRR _SFR_IO8(0x25)
 #define PRADC 0
-#define PRSPI 1
-#define PRTIM0 2
+#define PRTIM0 1
 
 #define CLKPR _SFR_IO8(0x26)
 #define CLKPS0 0
@@ -342,11 +341,7 @@
 #define RAMEND       (RAMSTART + RAMSIZE - 1)
 #define XRAMSTART    (NA)
 #define XRAMSIZE     (0)
-#if XRAMSIZE > 0 && XRAMSTART > 0
-#define XRAMEND      (XRAMSTART + XRAMSIZE - 1)
-#else
-#define XRAMEND      (RAMEND + XRAMSIZE)
-#endif
+#define XRAMEND      RAMEND
 #define E2END        (64 - 1)
 #define E2PAGESIZE   (4)
 #define FLASHEND     (1024 - 1)

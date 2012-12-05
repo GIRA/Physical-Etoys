@@ -29,7 +29,7 @@
   POSSIBILITY OF SUCH DAMAGE. 
 */
 
-/* $Id: iotn88.h,v 1.2.2.7 2008/10/17 23:27:53 arcanum Exp $ */
+/* $Id: iotn88.h,v 1.2.2.11 2009/02/14 00:38:23 arcanum Exp $ */
 
 /* avr/iotn88.h - definitions for ATtiny88 */
 
@@ -240,7 +240,7 @@
 #define CS00 0
 #define CS01 1
 #define CS02 2
-#define CTC0 7
+#define CTC0 3
 
 #define TCNT0 _SFR_IO8(0x26)
 #define TCNT0_0 0
@@ -331,7 +331,6 @@
 #define SE 0
 #define SM0 1
 #define SM1 2
-#define SM2 3
 
 #define MCUSR _SFR_IO8(0x34)
 #define PORF 0
@@ -493,7 +492,6 @@
 #define MUX3 3
 #define ADLAR 5
 #define REFS0 6
-#define REFS1 7
 
 #define DIDR0 _SFR_MEM8(0x7E)
 #define ADC0D 0
@@ -508,7 +506,6 @@
 #define DIDR1 _SFR_MEM8(0x7F)
 #define AIN0D 0
 #define AIN1D 1
-#define AREFD 2
 
 #define TCCR1A _SFR_MEM8(0x80)
 #define WGM10 0
@@ -710,7 +707,7 @@
 /* Constants */
 #define RAMEND       0x1FF
 #define XRAMSIZE     0
-#define XRAMEND      (RAMEND + XRAMSIZE)
+#define XRAMEND      RAMEND
 #define E2END        0x3F
 #define E2PAGESIZE   4
 #define FLASHEND     0x1FFF

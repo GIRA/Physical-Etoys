@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE. */
 
-/* $Id: iousb82.h,v 1.2.2.3 2008/08/14 00:08:08 arcanum Exp $ */
+/* $Id: iousb82.h,v 1.2.2.4 2009/02/11 18:05:34 arcanum Exp $ */
 
 /* avr/iousb82.h - definitions for AT90USB82 */
 
@@ -40,7 +40,7 @@
 /* Constants */
 #define SPM_PAGESIZE 128
 #define RAMEND       0x2FF
-#define XRAMEND      0x2FF
+#define XRAMEND      RAMEND
 #define E2END        0x1FF
 #define E2PAGESIZE   4
 #define FLASHEND     0x1FFF
