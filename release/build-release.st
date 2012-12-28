@@ -1,20 +1,14 @@
 | proxyConfig |
 "Configure proxy settings from proxy.config file"
-(FileDirectory default fileExists: 'proxy.config')
-	ifTrue: [[proxyConfig := ((FileDirectory default
-					directoryNamed: '..')
+[proxyConfig := (FileDirectory default
 					directoryNamed: '..')
 					fileNamed: 'proxy.config'.
-		HTTPSocket 
-			useProxyServerNamed: ((proxyConfig upTo: $:) 
-				ifNotEmpty: [:s | s]
-				ifEmpty: [nil])
-			port: (proxyConfig upToEnd ifNotEmpty: [:s | s] ifEmpty: [80])]
-				ensure: [proxyConfig close]]
-	ifFalse: [
-		HTTPSocket
-			useProxyServerNamed: nil
-			port: nil].
+HTTPSocket 
+	useProxyServerNamed: ((proxyConfig upTo: $:) 
+		ifNotEmpty: [:s | s]
+		ifEmpty: [nil])
+	port: (proxyConfig upToEnd ifNotEmpty: [:s | s] ifEmpty: [80])]
+		ensure: [proxyConfig close].
 
 WorldState addDeferredUIMessage: [			
 	"Set author initials now to avoid waiting for PE to be downloaded and installed"
