@@ -36,4 +36,4 @@ Utilities setAuthorInitials: 'Richo'.
 (Installer ss project: 'DuinoBot') install: 'DuinoBot-EtoysCompiler-'.
 
 "Make release"
-(Smalltalk at: #PEReleaseBuilder) new makeRelease.
+(Smalltalk at: #PEReleaseBuilder) makeRelease.
