@@ -14,24 +14,13 @@ Everything is just as easy as grabbing some tiles representing instructions and 
 Physical Etoys is actually an "extension" to Etoys (http://www.squeakland.org), a media-rich authoring environment and visual programming system made by the very same people who created Smalltalk. We believe Etoys is a wonderful software that helps children explore their own creativity in fun and educational ways, so we wanted to give Etoys the possibility to interact with real world objects such as robotic kits and innovative joysticks. Feel free to learn more about Etoys, it's open, it's free, and it's really fun!
 
 
-Installed packages (from SqueakSource):
----------------------------------------
-* PhysicalEtoys-Richo.54
-* CTranslator-Richo.22
-* Arduino-Core-Richo.14
-* Arduino-Compiler-Richo.24
-* Arduino-Etoys-Richo.30
-* SqueakNxt-Core-Richo.7
-* SqueakNxt-Etoys-Richo.23
-* ControlLab-Richo.10
-* ParallelPort-Richo.14
-* Wiimote-Richo.19
-* LegoIR-Richo.7
-* Femisapien-Richo.9
-* Roboquad-Richo.13
-* RoboSapien-Richo.20
-* ISobot-Richo.28
-* DuinoBot-Richo.12
-
-
+Build instructions:
+-------------------
+1) Download the latest VM for your platform from: http://tecnodacta.com.ar/gira/vms/
+2) Download the latest image from: http://tecnodacta.com.ar/gira/images/
+3) Extract both files in the "release" directory.
+4) Run:
+	- release/build-release.bat (in Windows)
+	- release/build-release.sh (in Linux)
+5) Grab a cup of coffee or something because this process can take a while :)
 
