@@ -18,7 +18,7 @@ Build instructions:
 -------------------
 1) Download the latest VM for your platform from: http://tecnodacta.com.ar/gira/vms/
 2) Download the latest image from: http://tecnodacta.com.ar/gira/images/
-3) Extract both files in the "release" directory.
+3) Extract both files in the "release/build" directory.
 4) Run:
 	- release/build-release.bat (in Windows)
 	- release/build-release.sh (in Linux)
