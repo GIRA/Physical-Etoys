@@ -1,2 +1,2 @@
 cd build
-@start PhysicalEtoys.exe *.image "..\build-release.st"
+@start PhysicalEtoys.exe *.image "..\build-release.st" %1
