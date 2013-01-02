@@ -15,7 +15,8 @@ RES="$PWD/contents"
 	-encoding latin1 \
 	-vm-display-X11 \
 	"$RES/pe.image" \
-	"$PWD/../build-release.st"
+	"$PWD/../build-release.st" \
+	$1
 
 # Change permissions of executable files
 chmod ugo+x "$RES/Arduino/Sketches/upload.sh"
