@@ -6,6 +6,7 @@ mkdir contents
 mv *.image contents/pe.image
 mv *.changes contents/pe.changes
 mv *.stc contents
+mv *.README contents
 
 # Execute PE release process
 EXE="$PWD/vm"
