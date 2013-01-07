@@ -13,8 +13,9 @@
 #define RQ_ATTACH_SERVO                                5
 #define RQ_SERVO_ANGLE                                 6
 #define RQ_DETACH_SERVO                                7
+#define RQ_DISCONNECT								   8
 
-#define RQ_MOTORDC                                     8
+#define RQ_MOTORDC                                     9
 
 /* RESPONSE COMMANDS */
 #define RS_DIGITAL_PORT                                1
@@ -66,6 +67,7 @@ Servo servo(long);
 void executeAttachServo();
 void executeDetachServo();
 void executeServoAngle();
+void executeDisconnect();
 
 
 void setup()
@@ -131,7 +133,10 @@ void setArgsToReadFor(byte command)
 		case RQ_ATTACH_SERVO:
 		case RQ_DETACH_SERVO:
             argsToRead = 1;
-            break;         			
+            break;
+		case RQ_DISCONNECT:
+			argsToRead = 0;
+			break;
     }
 }
 
@@ -172,6 +177,9 @@ void executeCommand()
 			break;
 		case RQ_SERVO_ANGLE:
 			executeServoAngle();
+			break;
+		case RQ_DISCONNECT:
+			executeDisconnect();
 			break;
     }
     argsToRead = -1;
@@ -255,6 +263,10 @@ void executeServoAngle()
 	SERVO(pin).write(value);
 }
 
+void executeDisconnect()
+{
+	establishContact();
+}
 
 void sendValues()
 {
