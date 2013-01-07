@@ -102,7 +102,7 @@ bool getBooleanValue(long pin)
 {
   if(getMode(pin) == 0)
   {
-      return digitalRead(pin) != 0;
+    return digitalRead(pin) == 0;	  
   }
   else
   {
