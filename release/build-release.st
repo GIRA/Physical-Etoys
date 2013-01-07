@@ -1,9 +1,9 @@
 | proxyConfig |
 "Configure proxy settings from proxy.config file"
-[proxyConfig := (SmalltalkImage current platformName caseOf: {
-		['Win32'] -> [FileDirectory default directoryNamed: '..'].
-		['unix'] -> [FileDirectory default directoryNamed: '../..']
-	}) fileNamed: 'proxy.config'.
+[proxyConfig := ((FileDirectory default 
+					directoryNamed: '..')
+					directoryNamed: '..')
+					fileNamed: 'proxy.config'.
 HTTPSocket 
 	useProxyServerNamed: ((proxyConfig upTo: $:) 
 		ifNotEmpty: [:s | s]
