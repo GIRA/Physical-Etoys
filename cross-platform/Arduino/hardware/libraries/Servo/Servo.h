@@ -26,6 +26,7 @@
   Timers are seized as needed in groups of 12 servos - 24 servos use two timers, 48 servos will use four.
   The sequence used to sieze timers is defined in timers.h
 
+
   The methods are:
 
    Servo - Class for manipulating servo motors connected to Arduino pins.
@@ -66,8 +67,10 @@ typedef enum { _timer5, _timer1, _timer3, _timer4, _Nbr_16timers } timer16_Seque
 
 #elif defined(__AVR_ATmega32U4__)  
 #define _useTimer3
-#define _useTimer1 
-typedef enum { _timer3, _timer1, _Nbr_16timers } timer16_Sequence_t ;
+//##2011.10.09: Modified for DuinoBot and DuinoBot.Kids boards:
+//#define _useTimer1 
+//typedef enum { _timer3, _timer1, _Nbr_16timers } timer16_Sequence_t ;
+typedef enum { _timer3, _Nbr_16timers } timer16_Sequence_t ;
 
 #elif defined(__AVR_AT90USB646__) || defined(__AVR_AT90USB1286__)
 #define _useTimer3
