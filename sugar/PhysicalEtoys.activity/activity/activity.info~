@@ -1,0 +1,8 @@
+[Activity]
+name = PhysicalEtoys
+bundle_id = org.gira.PhysicalEtoys
+icon = activity-physicaletoys
+activity_version = 4
+host_version = 1
+show_launcher = yes
+exec = physicaletoys-activity

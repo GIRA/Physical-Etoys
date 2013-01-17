@@ -1,0 +1,1 @@
+SugarNavigatorBar current fullScreenOn.
