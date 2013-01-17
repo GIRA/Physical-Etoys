@@ -1,4 +1,18 @@
 #!/bin/sh
+BUILDER=""
+ACTIVITY_NAME=""
+
+# arguments are unordered, have to loop
+while [ -n "$2" ] ; do
+    case "$1" in
+      	-b | --builder)  BUILDER="$2"   ;;
+      	-s | --sugar)    ACTIVITY_NAME="$2" ;;
+	*) echo unknown argument $1 $2 ;;
+    esac
+    shift;shift
+done
+
+# Change directory to build
 cd build
 
 # Create contents directory and move image, changes and sources
@@ -17,10 +31,33 @@ RES="$PWD/contents"
 	-vm-display-X11 \
 	"$RES/pe.image" \
 	"$PWD/../build-release.st" \
-	$1
+	$BUILDER
 
 # Change permissions of executable files
 chmod ugo+x "$RES/nbc"
 chmod ugo+x "$RES/Arduino/Sketches/upload.sh"
 chmod ugo+x "$RES/Arduino/hardware/tools/avr/bin/avrdude"
 chmod ugo+x "$RES/Arduino/hardware/tools/hid_bootcli/v1.0/hid_bootloader_cli.Linux"
+
+# Change directory back to release
+cd ..
+
+# Create sugar bundle if 
+if [ $ACTIVITY_NAME ]; then
+    # Prepare directory
+    mkdir bin
+    mv build/* bin
+    mv bin build
+    mkdir build/$ACTIVITY_NAME.activity
+    mv build/bin build/$ACTIVITY_NAME.activity
+    # Move all sugar files
+    cp -r \
+        ../sugar/$ACTIVITY_NAME.activity/* \
+        build/$ACTIVITY_NAME.activity
+    cd build/$ACTIVITY_NAME.activity
+    # Create MANIFEST
+    find . -type f | sed 's,^./,,g' > MANIFEST
+    # Create .xo
+    chmod a+x setup.py
+    ./setup.py dist_xo
+fi
