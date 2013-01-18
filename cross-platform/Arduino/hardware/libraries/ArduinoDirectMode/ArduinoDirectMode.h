@@ -1,6 +1,7 @@
 #include "QueueArray.h"
 #include "WString.cpp" //Why do I need to include this?!? #Richo
 #include "Servo.cpp"
+#include "Tone.cpp"
 
 
 /* REQUEST COMMANDS */
@@ -13,6 +14,7 @@
 #define RQ_SERVO_ANGLE                                 6
 #define RQ_DETACH_SERVO                                7
 #define RQ_DISCONNECT								   8
+#define RQ_PLAY_TONE								   9
 
 /* RESPONSE COMMANDS */
 #define RS_DIGITAL_PORT                                1
@@ -64,6 +66,7 @@ void executeAttachServo();
 void executeDetachServo();
 void executeServoAngle();
 void executeDisconnect();
+void executePlayTone();
 
 void setup()
 {
@@ -113,6 +116,9 @@ void setArgsToReadFor(byte command)
 {
     switch(command)
     {
+		case RQ_PLAY_TONE:
+			argsToRead = 6;
+			break;
         case RQ_ANALOG_WRITE:
 		case RQ_SERVO_ANGLE:
             argsToRead = 3;
@@ -129,7 +135,7 @@ void setArgsToReadFor(byte command)
             break;        
 		case RQ_DISCONNECT:
 			argsToRead = 0;
-			break; 
+			break;
     }
 }
 
@@ -170,6 +176,9 @@ void executeCommand()
 			break;
 		case RQ_DISCONNECT:
 			executeDisconnect();
+			break;
+		case RQ_PLAY_TONE:
+			executePlayTone();
 			break;
     }
     argsToRead = -1;
@@ -246,6 +255,22 @@ void executeDisconnect()
 	establishContact();
 }
 
+void executePlayTone()
+{
+	byte pin = queue.pop();
+	unsigned int freq;
+	unsigned long dur;
+	
+	//frequency
+	freq = queue.pop();
+	freq |= (queue.pop() << 7);
+	freq |= (queue.pop() << 14);
+	//duration
+	dur = queue.pop();
+	dur |= (queue.pop() << 7);
+	
+	tone(pin, freq, dur);	
+}
 
 void sendValues()
 {
