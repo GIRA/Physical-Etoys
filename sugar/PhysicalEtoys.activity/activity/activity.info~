@@ -2,7 +2,7 @@
 name = PhysicalEtoys
 bundle_id = org.gira.PhysicalEtoys
 icon = activity-physicaletoys
-activity_version = 4
+activity_version = 5
 host_version = 1
 show_launcher = yes
 exec = physicaletoys-activity
