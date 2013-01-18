@@ -2,6 +2,7 @@
 #define PhysicalEtoys_h
 
 #include "Servo.cpp"
+#include "Tone.cpp"
 
 #define PIN_VALUE(x)                (pinValues[(x) - 2])
 #define PIN_MODE(x)                  (pinModes[(x) - 2])
