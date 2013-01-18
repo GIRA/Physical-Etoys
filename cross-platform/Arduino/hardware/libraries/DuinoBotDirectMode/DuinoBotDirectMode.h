@@ -14,9 +14,9 @@
 #define RQ_SERVO_ANGLE                                 6
 #define RQ_DETACH_SERVO                                7
 #define RQ_DISCONNECT								   8
+#define RQ_PLAY_TONE								   9
 
-#define RQ_MOTORDC                                     9
-#define RQ_PLAY_TONE								  10
+#define RQ_MOTORDC                                    10
 
 /* RESPONSE COMMANDS */
 #define RS_DIGITAL_PORT                                1
