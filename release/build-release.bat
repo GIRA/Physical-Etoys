@@ -1,5 +1,5 @@
 REM Get arguments
-set BUILDER=
+set BUILDER=%1
 if "%1" == "-b" set BUILDER=%2
 if "%1" == "--builder" set BUILDER=%2
 
