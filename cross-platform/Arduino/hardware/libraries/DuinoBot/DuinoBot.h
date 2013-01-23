@@ -171,6 +171,7 @@ long getRGMotorSpeed(long motorID)
 
 long getIRCode(long pin)
 {
+	IR_RECV(pin).setPin(pin);
 	return (long)IR_RECV(pin).getIRRemoteCode();
 }
 
