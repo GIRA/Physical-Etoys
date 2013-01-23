@@ -3,21 +3,25 @@
 
 #include "Servo.cpp"
 #include "MotorDC.h"
+#include "IRremote.cpp"
 
-#define PIN_VALUE(x)                (pinValues[(x) - 2])
-#define PIN_MODE(x)                  (pinModes[(x) - 2])
-#define SERVO(x)                     (myservos[(x) - 2])
+#define PIN_VALUE(x)                (pinValues[(x) - 2]) //  2 to 19
+#define PIN_MODE(x)                  (pinModes[(x) - 2]) //  2 to 19
+#define SERVO(x)                     (myservos[(x) - 2]) //  2 to 19
+#define IR_RECV(x)				 (irReceivers[(x) - 14]) // 14 to 19
 
 /* Modes:
 	0 --- INPUT
 	1 --- OUTPUT
 	2 --- PWM
 	3 --- SERVO
+	4 --- IR_RECV
 */
 
 long pinValues[18] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 byte pinModes[18] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 Servo myservos[12];
+IRrecv irReceivers[6];
 
 MotorDC motorDC0(22, 20, 21);
 MotorDC motorDC1(3, 4, 8);
@@ -36,6 +40,7 @@ long Random(long);
 
 void setRGMotorSpeed(long, long);
 long getRGMotorSpeed(long);
+long getIRCode(long);
 
 long minMax(long value, long min, long max)
 {
@@ -60,6 +65,8 @@ void setMode(long pin, byte mode)
     pinMode(pin, INPUT);
   else if(mode == 3)
     SERVO(pin).attach(pin);
+  else if(mode == 4)
+	IR_RECV(pin).setPin(pin);
   else
     pinMode(pin, OUTPUT);
 }
@@ -160,6 +167,11 @@ long getRGMotorSpeed(long motorID)
 		return motorDC0.getSpeed();
 	if(motorID == 1)
 		return motorDC1.getSpeed();
+}
+
+long getIRCode(long pin)
+{
+	return (long)IR_RECV(pin).getIRRemoteCode();
 }
 
 #endif
