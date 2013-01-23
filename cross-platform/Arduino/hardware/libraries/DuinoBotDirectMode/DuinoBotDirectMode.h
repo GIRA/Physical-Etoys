@@ -2,7 +2,7 @@
 #include "MotorDC.h"
 //#include "WString.h" //Why do I need to include this?!? #Richo
 #include "Servo.cpp"
-
+#include "IRremote.cpp"
 
 /* REQUEST COMMANDS */
 #define RQ_ACTIVATE_ANALOG_PIN                         0
@@ -17,6 +17,9 @@
 #define RQ_PLAY_TONE								   9
 
 #define RQ_MOTORDC                                    10
+#define RQ_ATTACH_IR_RECV							  11
+#define RQ_DETACH_IR_RECV							  12
+
 
 /* RESPONSE COMMANDS */
 #define RS_DIGITAL_PORT                                1
@@ -31,18 +34,29 @@
 #define GET_ARGUMENT(x)                      ((x) & 127)
 #define AS_COMMAND(x)                                (x)
 #define AS_ARGUMENT(x)                       ((x) | 128)
-#define SERVO(x)                     (myservos[(x) - 2])
+#define SERVO(x)                     (myservos[(x) - 2]) //  2 to 19
 
-//extern "C" void __cxa_pure_virtual() {} //Why do I need to include this?!? #Richo
+#define IR_RECV(x)				 (irReceivers[(x) - 14]) // 14 to 19
+#define PIN_MODE(x)                  (pinModes[(x) - 2]) //  2 to 19
+
+/* Modes:
+	0 --- INPUT
+	1 --- OUTPUT
+	2 --- PWM
+	3 --- SERVO
+	4 --- IR_RECV
+*/
 
 bool reportAnalogPin[6] = {false, false, false, false, false, false};
 bool reportDigitalPort[2] = {false, false};
 bool reportDigitalPin[12] = {false, false, false, false, false, false, false, false, false, false, false, false};
+byte pinModes[18] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 long previousMillis = 0; 
 long interval = 50;
 
 Servo myservos[12];
+IRrecv irReceivers[6];
 
 MotorDC motorDC0(22, 20, 21);
 MotorDC motorDC1(3, 4, 8);
@@ -70,12 +84,13 @@ void executeDetachServo();
 void executeServoAngle();
 void executeDisconnect();
 void executePlayTone();
-
+void executeAttachIRReceiver();
+void executeDetachIRReceiver();
 
 void setup()
 {
      Serial.begin(57600);
-     establishContact();
+     establishContact();	 
 }
 
 void establishContact() {
@@ -137,6 +152,8 @@ void setArgsToReadFor(byte command)
             break;        
 		case RQ_ATTACH_SERVO:
 		case RQ_DETACH_SERVO:
+		case RQ_ATTACH_IR_RECV:
+		case RQ_DETACH_IR_RECV:
             argsToRead = 1;
             break;
 		case RQ_DISCONNECT:
@@ -189,6 +206,12 @@ void executeCommand()
 		case RQ_PLAY_TONE:
 			executePlayTone();
 			break;
+		case RQ_ATTACH_IR_RECV:
+			executeAttachIRReceiver();
+			break;
+		case RQ_DETACH_IR_RECV:
+			executeDetachIRReceiver();
+			break;
     }
     argsToRead = -1;
 }
@@ -205,6 +228,7 @@ void executeDigitalPinMode()
     byte pin = queue.pop();
     byte value = queue.pop();
     pinMode(pin, value);
+	PIN_MODE(pin) = value;
     reportDigitalPin[pin] = (value == 0);
 }
 
@@ -244,6 +268,7 @@ void executeActivateAnalogPin()
     byte pin = queue.pop();
     byte value = queue.pop();
     
+	PIN_MODE(pin) = 0;
     reportAnalogPin[pin] = (value != 0);
 }
 
@@ -251,6 +276,7 @@ void executeAttachServo()
 {
 	byte pin = queue.pop();
 	
+	PIN_MODE(pin) = 3;
 	SERVO(pin).attach(pin);
 }
 
@@ -258,6 +284,7 @@ void executeDetachServo()
 {
 	byte pin = queue.pop();
 	
+	PIN_MODE(pin) = 0;
 	SERVO(pin).detach();	
 }
 
@@ -291,6 +318,24 @@ void executePlayTone()
 	dur |= (queue.pop() << 7);
 	
 	tone(pin, freq, dur);	
+}
+
+void executeAttachIRReceiver()
+{
+	byte pin = queue.pop();
+	
+	PIN_MODE(pin) = 4;
+	IR_RECV(pin).setPin(pin);
+	reportAnalogPin[pin - 14] = true;
+}
+
+void executeDetachIRReceiver()
+{
+	byte pin = queue.pop();
+	
+	PIN_MODE(pin) = 0;
+	IR_RECV(pin).setPin(0);
+	reportAnalogPin[pin - 14] = false;
 }
 
 void sendValues()
@@ -332,13 +377,21 @@ void sendDigitalValues()
 void sendAnalogValues()
 {
     for(int pin = 0; pin < 6; pin++)
-    {
+    {			
         if(reportAnalogPin[pin])
         {
             Serial.print(AS_COMMAND(RS_ANALOG_PIN), BYTE);            
             Serial.print(AS_ARGUMENT(pin), BYTE);
-                        
-            int value = analogRead(pin);
+            
+			int value;
+			if (PIN_MODE(pin + 14) == 4) // IR_RECV attached
+			{
+				value = IR_RECV(pin + 14).getIRRemoteCode();
+			}
+			else
+			{
+				value = analogRead(pin);
+			}
             byte value1 = value & 127;
             byte value2 = value >> 7;
             Serial.print(AS_ARGUMENT(value1), BYTE);            
