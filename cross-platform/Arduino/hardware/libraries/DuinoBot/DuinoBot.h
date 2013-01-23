@@ -169,10 +169,15 @@ long getRGMotorSpeed(long motorID)
 		return motorDC1.getSpeed();
 }
 
+long previousMillis = 0; 
 long getIRCode(long pin)
 {
-	IR_RECV(pin).setPin(pin);
-	return (long)IR_RECV(pin).getIRRemoteCode();
+	if (millis() - previousMillis > 50)
+    {
+        PIN_VALUE(pin) = (long)IR_RECV(pin).getIRRemoteCode();
+        previousMillis = millis();   
+    }
+	return PIN_VALUE(pin);
 }
 
 #endif
