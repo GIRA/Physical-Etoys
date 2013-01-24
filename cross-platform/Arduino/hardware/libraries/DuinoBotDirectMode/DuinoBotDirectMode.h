@@ -267,8 +267,7 @@ void executeActivateAnalogPin()
 {
     byte pin = queue.pop();
     byte value = queue.pop();
-    
-	PIN_MODE(pin) = 0;
+    	
     reportAnalogPin[pin] = (value != 0);
 }
 
