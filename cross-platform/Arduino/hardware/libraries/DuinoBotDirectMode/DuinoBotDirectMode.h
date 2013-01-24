@@ -227,7 +227,7 @@ void executeDigitalPinMode()
 {
     byte pin = queue.pop();
     byte value = queue.pop();
-    pinMode(pin, value);
+    if (value != 4) pinMode(pin, value);
 	PIN_MODE(pin) = value;
     reportDigitalPin[pin] = (value == 0);
 }
