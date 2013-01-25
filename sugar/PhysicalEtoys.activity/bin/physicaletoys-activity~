@@ -22,18 +22,18 @@ if [ -z "$bundle_id" -o -z "$activity_id" ] ; then
   exit 1
 fi
 
-# rainbow-enforced locations
-export SQUEAK_SECUREDIR="$SUGAR_ACTIVITY_ROOT/data/private"
-export SQUEAK_USERDIR="$SUGAR_ACTIVITY_ROOT/data/pe"
-
-# make group-writable for rainbow
-umask 0002
-[ ! -d "$SQUEAK_SECUREDIR" ] && mkdir -p "$SQUEAK_SECUREDIR" && chmod o-rwx "$SQUEAK_SECUREDIR"
-[ ! -d "$SQUEAK_USERDIR" ] && mkdir -p "$SQUEAK_USERDIR"
-
 # do not crash on dbus errors
 export DBUS_FATAL_WARNINGS=0
 
+#export PLUGINS_PATH=$HOME/Activities/Scratch.activity/plugins/$ARCH/
+
+#exec squeak  \
+#	-vm-display-X11 \
+#	-swapbtn \
+# 	-sugarBundleId $bundle_id \
+#	-sugarActivityId $activity_id \
+#        -plugins $PLUGINS_PATH \
+#	ScratchXO.image $resume
 
 APP="$HOME/Activities/PhysicalEtoys.activity/bin/"
 EXE="$APP/vm"
