@@ -39,6 +39,10 @@ APP="$HOME/Activities/PhysicalEtoys.activity/bin/"
 EXE="$APP/vm"
 RES="$APP/contents"
 
+# change path variables in order to find the avr tools correctly
+export LD_LIBRARY_PATH="$RES/Arduino/hardware/tools/avr/lib"
+export PATH=$PATH:"$RES/Arduino/hardware/tools/avr/bin"
+
 exec "$EXE/squeakvm" \
 	-encoding latin1 \
 	-vm-display-X11  \
