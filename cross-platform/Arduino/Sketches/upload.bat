@@ -30,7 +30,7 @@ copy nul out
 copy nul err
 
 REM -- En el directorio debería existir un archivo Makefile correcto (es responsabilidad de Squeak crearlo)
-..\..\hardware\tools\avr\utils\bin\make TARGET=%target% clean
+If exist clean ..\..\hardware\tools\avr\utils\bin\make TARGET=%target% clean
 ..\..\hardware\tools\avr\utils\bin\make TARGET=%target% applet_files
 ..\..\hardware\tools\avr\utils\bin\make TARGET=%target% build 2>> err
 ..\..\hardware\tools\avr\utils\bin\make TARGET=%target% sizeafter 1>> out
