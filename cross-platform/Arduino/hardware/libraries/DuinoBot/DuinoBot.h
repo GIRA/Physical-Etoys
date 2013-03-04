@@ -10,13 +10,12 @@
 #define SERVO(x)                     (myservos[(x) - 2]) //  2 to 19
 #define IR_RECV(x)				 (irReceivers[(x) - 14]) // 14 to 19
 
-/* Modes:
-	0 --- INPUT
-	1 --- OUTPUT
-	2 --- PWM
-	3 --- SERVO
-	4 --- IR_RECV
-*/
+#define INPUT_MODE			0
+#define OUTPUT_MODE			1
+#define PWM_MODE			2
+#define SERVO_MODE			3
+#define IR_RECV_MODE		4
+
 
 long pinValues[18] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 byte pinModes[18] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -28,6 +27,8 @@ MotorDC motorDC1(3, 4, 8);
 
 
 long minMax(long, long, long);
+long Random(long);
+
 byte getMode(long);
 void setMode(long, byte);
 long getValue(long);
@@ -36,8 +37,6 @@ bool getBooleanValue(long);
 void setBooleanValue(long, bool);
 long getDCMotorSpeed(long, long, long);
 void setDCMotorSpeed(long, long, long, long);
-long Random(long);
-
 void setRGMotorSpeed(long, long);
 long getRGMotorSpeed(long);
 long getIRCode(long);
@@ -58,22 +57,29 @@ byte getMode(long pin)
 
 void setMode(long pin, byte mode)
 {
-  if(PIN_MODE(pin) == 3)
+  // First detach any SERVO or IR_RECV
+  if(PIN_MODE(pin) == SERVO_MODE)
     SERVO(pin).detach();
+  if(PIN_MODE(pin) == IR_RECV_MODE)
+    IR_RECV(pin).setPin(0);
+  
+  // Then, save the new pin mode
   PIN_MODE(pin) = mode;
-  if(mode == 0)
+  
+  // Finally, set the actual pin mode
+  if(mode == INPUT_MODE)
     pinMode(pin, INPUT);
-  else if(mode == 3)
+  else if(mode == SERVO_MODE)
     SERVO(pin).attach(pin);
-  else if(mode == 4)
+  else if(mode == IR_RECV_MODE)
 	IR_RECV(pin).setPin(pin);
-  else
+  else // PWM_MODE or OUTPUT_MODE
     pinMode(pin, OUTPUT);
 }
 
 long getValue(long pin)
 {
-  if(getMode(pin) == 0)
+  if(getMode(pin) == INPUT_MODE)
   {
     if(pin > 13)
 	  return analogRead(pin - 14);
@@ -92,13 +98,13 @@ void setValue(long pin, long value)
   PIN_VALUE(pin) = actualValue;
   switch(getMode(pin))
   {
-    case 1: //OUT
+    case OUTPUT_MODE:
       digitalWrite(pin, actualValue);
       break;
-    case 2: //PWM
+    case PWM_MODE:
       analogWrite(pin, actualValue);
       break;
-	case 3: //SERVO
+	case SERVO_MODE:
 	  actualValue = minMax(value, 0, 180);
 	  PIN_VALUE(pin) = actualValue;
 	  SERVO(pin).write(actualValue);
@@ -107,7 +113,7 @@ void setValue(long pin, long value)
 
 bool getBooleanValue(long pin)
 {
-  if(getMode(pin) == 0)
+  if(getMode(pin) == INPUT_MODE)
   {
     return digitalRead(pin) == 0;	  
   }
@@ -169,13 +175,13 @@ long getRGMotorSpeed(long motorID)
 		return motorDC1.getSpeed();
 }
 
-long previousMillis = 0; 
+long previousMillisIR = 0; 
 long getIRCode(long pin)
 {
-	if (millis() - previousMillis > 50)
+	if (millis() - previousMillisIR > 50)
     {
         PIN_VALUE(pin) = (long)IR_RECV(pin).getIRRemoteCode();
-        previousMillis = millis();   
+        previousMillisIR = millis();   
     }
 	return PIN_VALUE(pin);
 }

@@ -90,7 +90,7 @@ void executeDetachIRReceiver();
 void setup()
 {
      Serial.begin(57600);
-     establishContact();	 
+     establishContact();
 }
 
 void establishContact() {
@@ -121,6 +121,8 @@ void loop()
         sendValues();
         previousMillis = millis();   
     }
+	
+	
 }
 
 void readCommand(byte inByte)
@@ -399,5 +401,3 @@ void sendAnalogValues()
         }
     }
 }
-
-
