@@ -2,7 +2,7 @@
 #include "WString.cpp" //Why do I need to include this?!? #Richo
 #include "Servo.cpp"
 #include "Tone.cpp"
-
+#include "AFMotor.cpp"
 
 /* REQUEST COMMANDS */
 #define RQ_ACTIVATE_ANALOG_PIN                         0
@@ -15,6 +15,9 @@
 #define RQ_DETACH_SERVO                                7
 #define RQ_DISCONNECT								   8
 #define RQ_PLAY_TONE								   9
+/* ... gap to avoid collisions with DuinoBot ... */
+#define RQ_AF_DCMOTOR							  	  13
+
 
 /* RESPONSE COMMANDS */
 #define RS_DIGITAL_PORT                                1
@@ -29,7 +32,8 @@
 #define GET_ARGUMENT(x)                      ((x) & 127)
 #define AS_COMMAND(x)                                (x)
 #define AS_ARGUMENT(x)                       ((x) | 128)
-#define SERVO(x)                     (myservos[(x) - 2])
+#define SERVO(x)                     (myservos[(x) - 2]) // 2 to 19
+#define AF_DCMOTOR(x)                (mymotors[(x) - 1]) // 1 to 4
 
 
 extern "C" void __cxa_pure_virtual() {} //Why do I need to include this?!? #Richo
@@ -46,6 +50,8 @@ long interval = 15;
 
 int argsToRead = -1;
 QueueArray <byte> queue;
+
+AF_DCMotor mymotors[4];
 
 
 void establishContact();
@@ -67,6 +73,7 @@ void executeDetachServo();
 void executeServoAngle();
 void executeDisconnect();
 void executePlayTone();
+void executeAFDCMotor();
 
 void setup()
 {
@@ -119,6 +126,7 @@ void setArgsToReadFor(byte command)
 		case RQ_PLAY_TONE:
 			argsToRead = 6;
 			break;
+		case RQ_AF_DCMOTOR:
         case RQ_ANALOG_WRITE:
 		case RQ_SERVO_ANGLE:
             argsToRead = 3;
@@ -179,6 +187,9 @@ void executeCommand()
 			break;
 		case RQ_PLAY_TONE:
 			executePlayTone();
+			break;
+		case RQ_AF_DCMOTOR:
+			executeAFDCMotor();
 			break;
     }
     argsToRead = -1;
@@ -270,6 +281,17 @@ void executePlayTone()
 	dur |= (queue.pop() << 7);
 	
 	tone(pin, freq, dur);	
+}
+
+void executeAFDCMotor()
+{
+    byte motor = queue.pop();
+    byte cmd = queue.pop();
+    byte speed = queue.pop();
+    
+	AF_DCMOTOR(motor).init(motor);
+	AF_DCMOTOR(motor).setSpeed(speed);
+	AF_DCMOTOR(motor).run(cmd);
 }
 
 void sendValues()
