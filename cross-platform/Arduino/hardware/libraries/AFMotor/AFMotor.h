@@ -155,7 +155,7 @@ class AF_DCMotor
  public:
   // [RICHO]
   AF_DCMotor() { motornum = 0; }
-  void init(uint8_t motornum, uint8_t freq = DC_MOTOR_PWM_RATE);
+  void init(uint8_t motornum);
   // [/RICHO]
   
   AF_DCMotor(uint8_t motornum, uint8_t freq = DC_MOTOR_PWM_RATE);

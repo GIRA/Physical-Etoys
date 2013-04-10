@@ -366,34 +366,37 @@ AF_DCMotor::AF_DCMotor(uint8_t num, uint8_t freq) {
 }
 
 // [RICHO]
-void AF_DCMotor::init(uint8_t num, uint8_t freq) {
+void AF_DCMotor::init(uint8_t num) {
   if (motornum == 0) // Only allow initialization once
   {
     motornum = num;
-    pwmfreq = freq;
     
     MC.enable();
     
     switch (num) {
-    case 1:
+    case 1:	
+      pwmfreq = MOTOR12_64KHZ; // Hardcoded from firmata
       latch_state &= ~_BV(MOTOR1_A) & ~_BV(MOTOR1_B); // set both motor pins to 0
-      MC.latch_tx();
-      initPWM1(freq);
+      MC.latch_tx();	  
+      initPWM1(pwmfreq);
       break;
-    case 2:
+    case 2:	  
+      pwmfreq = MOTOR12_64KHZ; // Hardcoded from firmata
       latch_state &= ~_BV(MOTOR2_A) & ~_BV(MOTOR2_B); // set both motor pins to 0
       MC.latch_tx();
-      initPWM2(freq);
+      initPWM2(pwmfreq);
       break;
     case 3:
+	  pwmfreq = MOTOR34_64KHZ; // Hardcoded from firmata
       latch_state &= ~_BV(MOTOR3_A) & ~_BV(MOTOR3_B); // set both motor pins to 0
       MC.latch_tx();
-      initPWM3(freq);
+      initPWM3(pwmfreq);
       break;
     case 4:
+	  pwmfreq = MOTOR34_64KHZ; // Hardcoded from firmata
       latch_state &= ~_BV(MOTOR4_A) & ~_BV(MOTOR4_B); // set both motor pins to 0
       MC.latch_tx();
-      initPWM4(freq);
+      initPWM4(pwmfreq);
       break;
     }
   }
