@@ -127,6 +127,8 @@ void setArgsToReadFor(byte command)
 			argsToRead = 6;
 			break;
 		case RQ_AF_DCMOTOR:
+			argsToRead = 4;
+			break;
         case RQ_ANALOG_WRITE:
 		case RQ_SERVO_ANGLE:
             argsToRead = 3;
@@ -286,16 +288,27 @@ void executePlayTone()
 void executeAFDCMotor()
 {
     byte motor = queue.pop();
-    byte cmd = queue.pop();
-    byte speed = queue.pop();
+    byte cmd = queue.pop();	
+	byte value1 = queue.pop();
+    byte value2 = queue.pop();
+    byte speed = value1 | (value2 << 7);
     
 	AF_DCMOTOR(motor).init(motor);
 	AF_DCMOTOR(motor).setSpeed(speed);
 	AF_DCMOTOR(motor).run(cmd);
+	
+	/*
+	// ECHO
+	Serial.print(AS_COMMAND(RQ_AF_DCMOTOR), BYTE);
+	Serial.print(AS_ARGUMENT(motor), BYTE);
+	Serial.print(AS_ARGUMENT(cmd), BYTE);
+	Serial.print(AS_ARGUMENT(value1), BYTE);
+	Serial.print(AS_ARGUMENT(value2), BYTE);
+	*/
 }
 
 void sendValues()
-{
+{	
     sendDigitalValues();
     sendAnalogValues();
 }
