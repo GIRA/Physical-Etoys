@@ -31,7 +31,9 @@ fi
 > $target/out
 
 #En el directorio debería existir un archivo Makefile correcto (es responsabilidad de Squeak crearlo)
-make -s -C $target clean "TARGET=$target"
+if [ -f clean ]; then
+    make -s -C $target clean "TARGET=$target"
+fi
 make -s -C $target applet_files "TARGET=$target"
 make -s -C $target build "TARGET=$target" 2> $target/err
 make -s -C $target sizeafter "TARGET=$target" 1> $target/out
